@@ -50,6 +50,81 @@
         <p id="observation-banner-period"></p>
       </div>
 
+      <section class="panel assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">AI에게 물어보기</h2>
+        <p id="assistant-hint" class="assistant-description">지역, 관광객 구분, 기간, 지표를 문장으로 알려주세요.</p>
+        <form id="agent-form" aria-busy="false">
+          <fieldset id="agent-fields" disabled>
+            <div class="agent-question">
+              <label class="sr-only" for="question">분석 질문</label>
+              <textarea id="question" name="question" rows="2" maxlength="300" required aria-describedby="assistant-hint" placeholder="두 구도심 모두 토요일 소비가 더 많았어?"></textarea>
+              <button class="button primary" type="submit">질문 보내기 <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="agent-examples" aria-label="질문 예시">
+              <button class="agent-example" type="button" data-agent-question="두 구도심 모두 토요일 소비가 더 많았어?">두 구도심 비교</button>
+              <button class="agent-example" type="button" data-agent-question="그 차이가 매달 비슷했어?">월별 추이 확인</button>
+              <button class="agent-example" type="button" data-agent-question="올해도 그래?">올해 자료 확인</button>
+            </div>
+          </fieldset>
+        </form>
+        <p id="agent-feedback" class="feedback" role="status"></p>
+        <div id="agent-analysis" class="agent-analysis" hidden>
+          <dl class="metadata">
+            <div><dt>선택한 분석</dt><dd id="agent-analysis-type"></dd></div>
+            <div><dt>적용 조건</dt><dd id="agent-analysis-scope"></dd></div>
+            <div id="agent-requested-row" hidden><dt>요청 기간</dt><dd id="agent-requested-period"></dd></div>
+            <div id="agent-observed-row" hidden><dt>자료 관측 기간</dt><dd id="agent-observed-period"></dd></div>
+            <div id="agent-source-row" hidden><dt>데이터 출처</dt><dd><a id="agent-source" target="_blank" rel="noopener noreferrer"></a></dd></div>
+          </dl>
+          <a id="agent-result-link" class="agent-result-link" hidden>분석 결과 보기 ↓</a>
+        </div>
+      </section>
+
+      <section class="panel group-comparison" aria-labelledby="groups-heading" id="group-comparison" aria-busy="true">
+        <h2 id="groups-heading" tabindex="-1">지역과 관광객별 주말 비교</h2>
+        <p class="group-intro">같은 기간에 지역과 관광객 구분에 따라 토요일과 일요일 중 어느 쪽이 앞섰는지 확인하세요.</p>
+        <form id="group-compare-form">
+          <fieldset id="group-compare-fields" class="group-filters" disabled>
+            <div>
+              <label for="group-district">지역</label>
+              <select id="group-district" name="district"></select>
+            </div>
+            <div>
+              <label for="group-visitor-type">관광객 구분</label>
+              <select id="group-visitor-type" name="visitor_type"></select>
+            </div>
+            <div>
+              <label for="group-start-month">시작 월</label>
+              <select id="group-start-month" name="start_month" required></select>
+            </div>
+            <div>
+              <label for="group-end-month">종료 월</label>
+              <select id="group-end-month" name="end_month" required></select>
+            </div>
+            <div>
+              <label for="group-metric">비교 지표</label>
+              <select id="group-metric" name="metric" required></select>
+            </div>
+            <button id="group-submit" class="button primary" type="submit">집단별 비교하기 <span aria-hidden="true">→</span></button>
+          </fieldset>
+        </form>
+        <p id="group-compare-feedback" class="feedback" role="status">공통 관측 기간을 불러오는 중입니다.</p>
+        <div id="group-compare-result" hidden>
+          <div class="group-findings">
+            <p id="group-compare-scope" class="group-scope"></p>
+            <p id="group-compare-summary" class="result-headline"></p>
+            <p id="group-compare-note" class="result-note"></p>
+          </div>
+          <div id="group-compare-cards" class="group-cards"></div>
+          <dl class="metadata group-metadata">
+            <div><dt>집계에 포함</dt><dd id="group-included-months"></dd></div>
+            <div id="group-excluded-row" hidden><dt>집계에서 제외</dt><dd id="group-excluded-months"></dd></div>
+            <div id="group-observed-row" hidden><dt>원자료 관측 기간</dt><dd id="group-observed-period"></dd></div>
+            <div><dt>데이터 출처</dt><dd><a id="group-compare-source" target="_blank" rel="noopener noreferrer"></a></dd></div>
+          </dl>
+        </div>
+      </section>
+
       <div class="workspace">
         <section class="panel settings" aria-labelledby="settings-heading">
           <p class="section-index">01 / 조건 선택</p>
@@ -133,24 +208,6 @@
           </div>
         </section>
 
-        <section class="panel assistant" aria-labelledby="assistant-heading">
-          <div class="assistant-heading">
-            <span class="assistant-icon" aria-hidden="true">✦</span>
-            <div>
-              <p class="section-index">NVIDIA NIM</p>
-              <h2 id="assistant-heading">AI에게 물어보기</h2>
-            </div>
-          </div>
-          <p id="assistant-hint" class="assistant-description">지역, 관광객 구분, 기간, 지표를 문장으로 알려주세요.</p>
-          <form id="agent-form">
-            <fieldset id="agent-fields" disabled>
-              <label class="sr-only" for="question">비교 질문</label>
-              <textarea id="question" name="question" rows="3" maxlength="300" required aria-describedby="assistant-hint" placeholder="서귀포시 구도심의 내국인 관광객 이용 건수를 비교해줘"></textarea>
-              <button class="button secondary" type="submit">질문으로 비교 <span aria-hidden="true">↗</span></button>
-            </fieldset>
-          </form>
-          <p id="agent-feedback" class="feedback" role="status"></p>
-        </section>
       </div>
 
       <footer class="footer">

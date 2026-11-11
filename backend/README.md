@@ -40,11 +40,13 @@ py -3.12 -m venv .venv
 
 `month,district,visitor_type,weekday` 조합은 고유해야 합니다. 선택한 지구·관광객 구분에서 토요일과 일요일이 모두 있는 달만 비교합니다. 실제 자료는 **기간 합계**로 표시하며, 월 전체 집계가 확인된 경우 `JEJU_FULL_MONTH_COVERAGE=true`로 설정해 일평균을 계산할 수 있습니다. 현재 수집본은 과거 관측 자료입니다.
 
+전체 그룹 비교에서는 모든 그룹에 토·일 관측이 있는 공통 월을 사용합니다. 응답에는 그룹별 기간 집계와 월별 결과, 토요일·일요일·동률로 집계된 월 수가 들어갑니다. 일평균을 사용하는 경우 전체 기간 일평균은 기간 합계를 해당 요일의 전체 일수로 나눕니다.
+
 ## NVIDIA 자연어 분석
 
-[NVIDIA Build](https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b)에서 개발용 API 키를 발급받아 `backend/.env`의 `NVIDIA_API_KEY`에 넣고 서버를 다시 시작합니다. 모델 기본값은 `nvidia/nemotron-3.5-lightning-30b-a3b`입니다. 백엔드가 [NVIDIA Chat Completions](https://docs.api.nvidia.com/nim/reference/nvidia-nemotron-3-5-lightning-30b-a3b-infer)에 질문·선택 조건·지원 지구와 월 목록을 전송합니다. 카드 집계 값은 DuckDB에서 계산하고 앱에서 표시합니다.
+[NVIDIA Build](https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b)에서 개발용 API 키를 발급받아 `backend/.env`의 `NVIDIA_API_KEY`에 넣고 서버를 다시 시작합니다. 모델 기본값은 `nvidia/nemotron-3.5-lightning-30b-a3b`입니다. 백엔드는 질문과 현재 선택, 지원 지구·관광객 유형·관측월 목록을 NVIDIA에 전달합니다. 모델은 단일 비교, 집단 비교, 월별 추이, 관측 범위 조회 중 맞는 도구를 고릅니다. 카드 수치는 DuckDB에서 계산합니다.
 
-실제 자료 모드에서는 `제주시 구도심의 2017년 9월부터 11월까지 내국인 관광객의 토·일 카드 이용 건수를 비교해줘`라고 입력할 수 있습니다. 이어서 `그럼 서귀포는?`이라고 물으면 기간·관광객 구분·지표를 이어받습니다. 키 미설정이나 연결 실패 시 화면의 조건 선택을 사용합니다.
+실제 자료 모드에서는 `두 구도심 모두 토요일 소비가 더 많았어?`에 이어 `그 차이가 매달 비슷했어?`, `그럼 서귀포만 보면?`, `올해도 그래?`를 입력할 수 있습니다. 후속 질문은 직전 분석의 조건을 이어받고, 요청한 시점의 관측이 없으면 조회 가능한 기간을 반환합니다. 키 미설정이나 연결 실패 시 화면의 조건 선택을 사용합니다.
 
 `.env`와 실제 CSV는 Git 제외 목록에 들어 있습니다. 대회 제출 시 제주데이터허브 데이터 API 키의 발급·설정 방법을 문서에 적고, 심사에 필요한 외부 AI API의 평가용 키는 최신 대회 규정에 따라 별도로 준비합니다. [대회 공식 규정](https://daker.ai/public/hackathons/jeju-ai-bigdata-agent-challenge)
 
@@ -52,9 +54,10 @@ py -3.12 -m venv .venv
 
 | 경로 | 용도 |
 | --- | --- |
-| `GET /api/options` | 데이터 모드, 지역·관광객 구분별 비교 가능 월과 지표, NVIDIA 키 설정 여부 |
+| `GET /api/options` | 데이터 모드, 지역·관광객 구분별 비교 가능 월과 공통 비교월(`comparison_months`), 지표, NVIDIA 키 설정 여부 |
 | `POST /api/compare` | `district`, `visitor_type`, `start_month`, `end_month`, `metric`으로 비교 |
-| `POST /api/agent` | `question`과 선택 조건 `context`로 비교 또는 보충 질문 |
+| `POST /api/compare-groups` | `start_month`, `end_month`, `metric`과 선택 사항인 `district`, `visitor_type`으로 집단별 토·일 합계와 월별 추이 조회 |
+| `POST /api/agent` | `question`, 직전 분석 조건 `context`, 집단 비교 화면 조건 `group_context`로 분석 실행, 관측 범위 안내 또는 보충 질문 반환 |
 
 저장소 루트에서 다음 명령으로 테스트합니다.
 

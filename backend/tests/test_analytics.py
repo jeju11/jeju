@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 from pydantic import ValidationError
 
-from analytics import AnalysisError, Analytics, CompareRequest
+from analytics import AnalysisError, Analytics, CompareRequest, CoverageRequest, GroupCompareRequest, ScopedGroupCompareRequest
 
 
 class AnalyticsTests(unittest.TestCase):
@@ -161,6 +161,148 @@ class AnalyticsTests(unittest.TestCase):
     def test_missing_data_returns_a_useful_error(self):
         with self.assertRaisesRegex(AnalysisError, "자료가 모두 있는 달이 없습니다"):
             self.compare(self.demo(), start_month="2024-01", end_month="2024-02")
+
+    def test_group_comparison_matches_months_and_reports_reversals_and_ties(self):
+        path = self.write_csv(
+            "2025-01,제주시 구도심,domestic,토요일,4,40\n"
+            "2025-01,제주시 구도심,domestic,일요일,0,0\n"
+            "2025-02,제주시 구도심,domestic,토요일,1000,10000\n"
+            "2025-02,제주시 구도심,domestic,일요일,2000,20000\n"
+            "2025-03,제주시 구도심,domestic,토요일,1,10\n"
+            "2025-03,제주시 구도심,domestic,일요일,6,60\n"
+            "2025-01,제주시 구도심,chinese,토요일,1,10\n"
+            "2025-01,제주시 구도심,chinese,일요일,3,30\n"
+            "2025-02,제주시 구도심,chinese,토요일,8000,80000\n"
+            "2025-03,제주시 구도심,chinese,토요일,8,80\n"
+            "2025-03,제주시 구도심,chinese,일요일,1,10\n"
+            "2025-01,서귀포시 구도심,domestic,토요일,0,0\n"
+            "2025-01,서귀포시 구도심,domestic,일요일,0,0\n"
+            "2025-03,서귀포시 구도심,domestic,토요일,7,70\n"
+            "2025-03,서귀포시 구도심,domestic,일요일,7,70\n"
+            "2025-01,서귀포시 구도심,chinese,일요일,99,990\n",
+            with_visitor_type=True,
+        )
+        analytics = Analytics(path, mode="real")
+        self.addCleanup(analytics.close)
+        result = analytics.compare_groups(GroupCompareRequest(
+            start_month="2025-01", end_month="2025-03", metric="transactions"
+        ))
+        self.assertEqual(analytics.options()["comparison_months"], ["2025-01", "2025-03"])
+        self.assertEqual(result["included_months"], ["2025-01", "2025-03"])
+        self.assertEqual(result["excluded_months"], ["2025-02"])
+        self.assertTrue(result["has_reversal"])
+        self.assertEqual(result["comparison_basis"], "total")
+        groups = {(group["district"], group["visitor_type"]): group for group in result["groups"]}
+        self.assertEqual(len(groups), 3)
+        domestic = groups[("제주시 구도심", "domestic")]
+        chinese = groups[("제주시 구도심", "chinese")]
+        tied = groups[("서귀포시 구도심", "domestic")]
+        self.assertEqual([domestic["winner"], chinese["winner"], tied["winner"]], ["일요일", "토요일", None])
+        self.assertEqual([row["total"] for row in domestic["rows"]], [5, 6])
+        self.assertEqual(domestic["monthly_wins"], {"saturday": 1, "sunday": 1, "ties": 0})
+        self.assertEqual(tied["monthly_wins"], {"saturday": 0, "sunday": 0, "ties": 2})
+        for group in groups.values():
+            self.assertEqual([item["month"] for item in group["months"]], result["included_months"])
+            for index, row in enumerate(group["rows"]):
+                self.assertEqual(sum(item["rows"][index]["total"] for item in group["months"]), row["total"])
+
+    def test_group_comparison_rejects_disjoint_months(self):
+        path = self.write_csv(
+            "2025-01,제주시 구도심,domestic,토요일,9,90\n"
+            "2025-01,제주시 구도심,domestic,일요일,8,80\n"
+            "2025-02,서귀포시 구도심,chinese,토요일,2,20\n"
+            "2025-02,서귀포시 구도심,chinese,일요일,3,30\n",
+            with_visitor_type=True,
+        )
+        analytics = Analytics(path, mode="real")
+        self.addCleanup(analytics.close)
+        self.assertEqual(analytics.options()["comparison_months"], [])
+        with self.assertRaisesRegex(AnalysisError, "함께 있는 달이 없습니다"):
+            analytics.compare_groups(GroupCompareRequest(
+                start_month="2025-01", end_month="2025-02", metric="transactions"
+            ))
+
+    def test_scope_filters_groups_before_computing_common_months(self):
+        available = [
+            ("2025-01", "제주시 구도심", "domestic"),
+            ("2025-02", "제주시 구도심", "domestic"),
+            ("2025-02", "제주시 구도심", "chinese"),
+            ("2025-01", "서귀포시 구도심", "domestic"),
+            ("2025-03", "서귀포시 구도심", "chinese"),
+        ]
+        path = self.write_csv(
+            "".join(
+                f"{month},{district},{visitor_type},{weekday},3,30\n"
+                for month, district, visitor_type in available
+                for weekday in ("토요일", "일요일")
+            ),
+            with_visitor_type=True,
+        )
+        analytics = Analytics(path, mode="real")
+        self.addCleanup(analytics.close)
+        self.assertEqual(analytics.options()["comparison_months"], [])
+        cases = [
+            ("제주시 구도심", None, ["2025-02"], 2),
+            (None, "domestic", ["2025-01"], 2),
+            ("제주시 구도심", "domestic", ["2025-01", "2025-02"], 1),
+        ]
+        for district, visitor_type, months, group_count in cases:
+            with self.subTest(district=district, visitor_type=visitor_type):
+                result = analytics.compare_groups(ScopedGroupCompareRequest(
+                    start_month="2025-01", end_month="2025-03", metric="transactions",
+                    district=district, visitor_type=visitor_type,
+                ))
+                self.assertEqual(result["district"], district)
+                self.assertEqual(result["visitor_type"], visitor_type)
+                self.assertEqual(result["included_months"], months)
+                self.assertEqual(len(result["groups"]), group_count)
+                self.assertEqual(analytics.coverage(CoverageRequest(
+                    district=district, visitor_type=visitor_type,
+                ))["months"], months)
+
+    def test_coverage_preserves_observed_period_outside_requested_window(self):
+        analytics = self.demo()
+        request = CoverageRequest(district="제주시 구도심", visitor_type="domestic", start_month="2025-03")
+        result = analytics.coverage(request)
+        self.assertEqual(result["visitor_type_label"], "내국인 관광객")
+        self.assertEqual(result["observed_start_month"], "2025-01")
+        self.assertEqual(result["observed_end_month"], "2025-03")
+        self.assertEqual(result["requested_start_month"], "2025-03")
+        self.assertIsNone(result["requested_end_month"])
+        self.assertEqual(result["available_months"], ["2025-03"])
+
+        outside = analytics.coverage(CoverageRequest(start_month="2026-01", end_month="2026-12"))
+        self.assertEqual(outside["available_months"], [])
+        self.assertEqual(outside["observed_end_month"], "2025-03")
+
+    def test_coverage_rejects_unavailable_scope_and_reversed_range(self):
+        analytics = self.demo()
+        for request in [CoverageRequest(district="알 수 없는 지역"), CoverageRequest(visitor_type="unspecified")]:
+            with self.subTest(request=request), self.assertRaisesRegex(AnalysisError, "함께 비교할 수 있는 달이 없습니다"):
+                analytics.coverage(request)
+        with self.assertRaises(ValidationError):
+            CoverageRequest(start_month="2025-03", end_month="2025-01")
+
+    def test_group_comparison_scores_daily_average_at_month_and_period_levels(self):
+        path = self.write_csv(
+            "2025-05,제주시 구도심,토요일,500,5000\n"
+            "2025-05,제주시 구도심,일요일,400,4000\n"
+            "2025-06,제주시 구도심,토요일,400,4000\n"
+            "2025-06,제주시 구도심,일요일,500,5000\n"
+        )
+        analytics = Analytics(path)
+        self.addCleanup(analytics.close)
+        result = analytics.compare_groups(GroupCompareRequest(
+            start_month="2025-05", end_month="2025-06", metric="transactions"
+        ))
+        group = result["groups"][0]
+        self.assertEqual(result["comparison_basis"], "daily_average")
+        self.assertFalse(result["has_reversal"])
+        self.assertEqual(group["visitor_type"], "unspecified")
+        self.assertIsNone(group["winner"])
+        self.assertEqual(group["monthly_wins"], {"saturday": 0, "sunday": 0, "ties": 2})
+        self.assertEqual([row["daily_average"] for row in group["months"][0]["rows"]], [100.0, 100.0])
+        self.assertEqual([row["days"] for row in group["rows"]], [9, 9])
 
     def test_invalid_ranges_are_rejected(self):
         analytics = self.demo()
