@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="제주 구도심의 토요일과 일요일 카드 소비를 비교하는 데이터 분석 프로토타입">
+    <title>제주 상권 브리핑</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="/" aria-label="제주 상권 브리핑 홈">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none">
+              <path d="M7 25c4-5 6-13 12-13 5 0 6 8 10 13H7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <path d="M13 25c2-3 3-7 6-7 2.5 0 3.5 3.5 5 7M9 11h5m-2.5-2.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span>제주 상권 브리핑</span>
+        </a>
+        <span id="mode-badge" class="mode-badge" data-mode="loading">데이터 확인 중</span>
+      </div>
+    </header>
+
+    <main class="shell" id="main">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> JEJU DATA LAB <span class="eyebrow-divider" aria-hidden="true">/</span> DAY 01</p>
+          <h1 id="hero-heading">우리 동네의<br>주말 카드 소비 비교</h1>
+          <p class="hero-description">지역, 관광객 구분, 기간을 골라 과거 토요일과 일요일의 카드 이용을 비교하세요.</p>
+        </div>
+        <div class="hero-source">
+          <span class="source-number" aria-hidden="true">608</span>
+          <div>
+            <span class="source-label">제주데이터허브</span>
+            <a id="hero-source-link" href="https://www.jejudatahub.net/data/view/data/608" target="_blank" rel="noopener noreferrer">관광지 및 상업지구<br>요일별 카드 데이터 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <div id="demo-banner" class="demo-banner" hidden>
+        <span class="demo-label">데모</span>
+        <p>화면의 숫자는 동작 확인용 예시입니다. 통계 자료로 쓰려면 실제 데이터를 연결해 주세요.</p>
+      </div>
+      <div id="observation-banner" class="demo-banner" hidden>
+        <span class="demo-label">과거 자료</span>
+        <p id="observation-banner-period"></p>
+      </div>
+
+      <div class="workspace">
+        <section class="panel settings" aria-labelledby="settings-heading">
+          <p class="section-index">01 / 조건 선택</p>
+          <h2 id="settings-heading">비교 조건</h2>
+          <form id="compare-form">
+            <fieldset id="compare-fields" disabled>
+              <label for="district">지역</label>
+              <select id="district" name="district" required></select>
+              <label for="visitor-type" class="visitor-label">관광객 구분</label>
+              <select id="visitor-type" name="visitor_type" required></select>
+              <div class="date-pair">
+                <div>
+                  <label for="start-month">시작 월</label>
+                  <select id="start-month" name="start_month" required></select>
+                </div>
+                <div>
+                  <label for="end-month">종료 월</label>
+                  <select id="end-month" name="end_month" required></select>
+                </div>
+              </div>
+              <label for="metric">비교 지표</label>
+              <select id="metric" name="metric" required></select>
+              <button class="button primary" type="submit">토·일 비교하기 <span aria-hidden="true">→</span></button>
+            </fieldset>
+          </form>
+          <p id="compare-feedback" class="feedback" role="status"></p>
+          <button id="retry-button" class="button secondary" type="button" hidden>다시 연결하기</button>
+        </section>
+
+        <section class="panel results" aria-labelledby="results-heading" id="results" aria-busy="true">
+          <div class="results-top">
+            <div>
+              <p class="section-index">02 / 비교 결과</p>
+              <h2 id="results-heading" tabindex="-1">토요일과 일요일</h2>
+            </div>
+            <span id="basis-badge" class="basis-badge" hidden></span>
+          </div>
+          <div id="empty-result" class="empty-result">
+            <span class="empty-icon" aria-hidden="true">▤</span>
+            <p id="empty-message">분석 가능한 조건을 불러오는 중입니다.</p>
+          </div>
+
+          <div id="result-content" hidden>
+            <p id="result-scope" class="result-scope"></p>
+            <div class="result-summary" role="status">
+              <span class="summary-icon" aria-hidden="true">↗</span>
+              <div>
+                <p id="result-headline" class="result-headline"></p>
+                <p id="result-note" class="result-note"></p>
+              </div>
+            </div>
+
+            <figure class="chart" aria-labelledby="chart-caption">
+              <figcaption id="chart-caption" class="chart-caption"></figcaption>
+              <div id="chart-rows" aria-hidden="true"></div>
+              <p class="sr-only">차트의 값은 아래 계산 근거 표에서 확인할 수 있습니다.</p>
+            </figure>
+
+            <section class="evidence" aria-labelledby="evidence-heading">
+              <h3 id="evidence-heading">계산 근거</h3>
+              <table>
+                <caption class="sr-only">토요일과 일요일 카드 이용 비교 수치</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">요일</th>
+                    <th scope="col">기간 합계</th>
+                    <th scope="col">포함 일수</th>
+                    <th scope="col">일평균</th>
+                  </tr>
+                </thead>
+                <tbody id="evidence-rows"></tbody>
+              </table>
+              <dl class="metadata">
+                <div><dt>집계에 포함</dt><dd id="included-months"></dd></div>
+                <div id="excluded-row" hidden><dt>집계에서 제외</dt><dd id="excluded-months"></dd></div>
+                <div id="observation-row" hidden><dt>원자료 관측 기간</dt><dd id="observation-period"></dd></div>
+                <div id="collection-row" hidden><dt>데이터 수집일</dt><dd id="collection-date"></dd></div>
+                <div><dt>데이터 출처</dt><dd><a id="result-source" target="_blank" rel="noopener noreferrer"></a></dd></div>
+              </dl>
+            </section>
+          </div>
+        </section>
+
+        <section class="panel assistant" aria-labelledby="assistant-heading">
+          <div class="assistant-heading">
+            <span class="assistant-icon" aria-hidden="true">✦</span>
+            <div>
+              <p class="section-index">NVIDIA NIM</p>
+              <h2 id="assistant-heading">AI에게 물어보기</h2>
+            </div>
+          </div>
+          <p id="assistant-hint" class="assistant-description">지역, 관광객 구분, 기간, 지표를 문장으로 알려주세요.</p>
+          <form id="agent-form">
+            <fieldset id="agent-fields" disabled>
+              <label class="sr-only" for="question">비교 질문</label>
+              <textarea id="question" name="question" rows="3" maxlength="300" required aria-describedby="assistant-hint" placeholder="서귀포시 구도심의 내국인 관광객 이용 건수를 비교해줘"></textarea>
+              <button class="button secondary" type="submit">질문으로 비교 <span aria-hidden="true">↗</span></button>
+            </fieldset>
+          </form>
+          <p id="agent-feedback" class="feedback" role="status"></p>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <p>JEJU DATA LAB <span aria-hidden="true">·</span> DAY 01 PROTOTYPE</p>
+        <p>자료에 기록된 기간과 대상의 카드 이용을 비교합니다.</p>
+      </footer>
+    </main>
+    <noscript><p class="noscript">이 화면을 이용하려면 브라우저에서 자바스크립트를 켜 주세요.</p></noscript>
+  </body>
+</html>

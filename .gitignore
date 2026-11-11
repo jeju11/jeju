@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+backend/data/*.csv
+!backend/data/demo_608.csv
+backend/data/*.json
+backend/data/*.lock
+backend/data/.jeju-608-*/
