@@ -12,6 +12,7 @@ from analytics import CompareRequest, CoverageRequest, ScopedGroupCompareRequest
 
 NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 DEFAULT_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
+MODEL_UNAVAILABLE_STATUS_CODES = {502, 503, 504}
 
 SEOUL_TIMEZONE = timezone(timedelta(hours=9))
 ComparisonKind = Literal["compare_weekdays", "compare_groups", "monthly_trend"]
@@ -28,7 +29,7 @@ SYSTEM_PROMPT = """제주 카드 이용 질문을 도구 호출 한 건으로 �
 current_selection.analysis가 있으면 직전 분석이다. 후속 질문은 직전 기간과 지표를 유지한다.
 '그 차이가 매달 비슷했어?'는 직전 비교 범위를 유지해 monthly_trend를 호출한다.
 '그럼 서귀포만 보면?'은 지역만 서귀포시 구도심으로 좁히고, 직전 분석이 monthly_trend면 그 도구를 유지한다.
-집단·월별 도구에서 모든 지역 또는 관광객 유형을 비교하려면 해당 필드에 null을 명시한다. '두 구도심 모두'는 district=null이다.
+집단·월별 도구에서 모든 지역 또는 관광객 유형을 비교하려면 해당 필드에 JSON null을 넣는다. '두 구도심 모두'는 district=null이다. null을 "none"이나 "null" 문자열로 쓰지 않는다.
 '자료가 있는 최근 N개월'은 해당 범위에서 자료의 마지막 관측월을 기준으로 한다. '올해도 그래?'는 current_month의 해 1월부터 current_month까지 inspect_coverage로 확인한다.
 실제 최근 기간을 관측된 과거 기간으로 바꾸지 않는다. 해당 기간의 관측이 없으면 inspect_coverage에 요청 기간을 그대로 넘긴다.
 해석이 모호하거나 예측, 방문객 수, 행사 효과, 일별·시간대별 분석을 요청하면 clarify를 호출한다. 분석 수치나 답변 문장을 직접 작성하지 않는다.
@@ -141,31 +142,35 @@ class NvidiaAgent:
             "catalog": districts,
             "current_month": datetime.now(SEOUL_TIMEZONE).strftime("%Y-%m"),
         }
+        payload = {
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": json.dumps(user_input, ensure_ascii=False)},
+            ],
+            "tools": TOOLS,
+            "tool_choice": "auto",
+            "chat_template_kwargs": {"enable_thinking": False},
+            "max_tokens": 512,
+            "stream": False,
+        }
+        models = (self.model,) if self.model == DEFAULT_MODEL else (self.model, DEFAULT_MODEL)
         try:
-            response = httpx.post(
-                NVIDIA_URL,
-                headers={"Authorization": f"Bearer {self.api_key}"},
-                json={
-                    "model": self.model,
-                    "messages": [
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": json.dumps(user_input, ensure_ascii=False)},
-                    ],
-                    "tools": TOOLS,
-                    "tool_choice": "auto",
-                    "chat_template_kwargs": {"enable_thinking": False},
-                    "max_tokens": 512,
-                    "stream": False,
-                },
-                timeout=httpx.Timeout(25.0, connect=5.0),
-            )
+            for model in models:
+                response = httpx.post(
+                    NVIDIA_URL,
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                    json={**payload, "model": model},
+                    timeout=httpx.Timeout(25.0, connect=5.0),
+                )
+                if response.status_code not in MODEL_UNAVAILABLE_STATUS_CODES:
+                    break
             response.raise_for_status()
         except httpx.HTTPStatusError as exc:
             if exc.response.status_code in {401, 403}:
                 message = "NVIDIA API 인증에 실패했습니다. 키 설정을 확인해 주세요."
             elif exc.response.status_code == 429:
                 message = "NVIDIA API 호출 한도에 도달했습니다. 잠시 후 시도하거나 조건을 직접 선택해 주세요."
-            elif exc.response.status_code in {502, 503, 504}:
+            elif exc.response.status_code in MODEL_UNAVAILABLE_STATUS_CODES:
                 message = "NVIDIA 모델의 응답이 일시적으로 지연되고 있습니다. 잠시 후 다시 시도해 주세요."
             else:
                 message = "NVIDIA API가 분석 요청을 처리하지 못했습니다. 조건을 직접 선택해 주세요."
@@ -187,6 +192,10 @@ class NvidiaAgent:
             arguments = json.loads(function["arguments"])
             if not isinstance(arguments, dict):
                 raise ValueError("Expected a tool argument object")
+            for field in ("district", "visitor_type"):
+                value = arguments.get(field)
+                if isinstance(value, str) and value.strip().lower() in {"none", "null"}:
+                    arguments[field] = None
             params = model.model_validate(with_selection_defaults(name, arguments, context, group_context))
             return AnalysisPlan(analysis=name, params=params)
         except (AttributeError, IndexError, KeyError, TypeError, ValueError) as exc:

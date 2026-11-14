@@ -5,7 +5,7 @@ from unittest.mock import patch
 import httpx
 from fastapi.testclient import TestClient
 
-from agent import NVIDIA_URL, NvidiaAgent
+from agent import DEFAULT_MODEL, NVIDIA_URL, NvidiaAgent
 from analytics import Analytics
 from main import create_app
 
@@ -90,7 +90,8 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(first["analysis"], "compare_groups")
             self.assertEqual(len(first["result"]["groups"]), 4)
             params = {**GROUP_QUERY, "district": "서귀포시 구도심", "visitor_type": None}
-            with patch("agent.httpx.post", return_value=tool_response("monthly_trend", params)):
+            tool_params = {**params, "visitor_type": "none"}
+            with patch("agent.httpx.post", return_value=tool_response("monthly_trend", tool_params)):
                 second = client.post("/api/agent", json={
                     "question": "서귀포만 월별로 보여줘", "context": {**first["params"], "analysis": first["analysis"]},
                 }).json()
@@ -104,6 +105,7 @@ class ApiTests(unittest.TestCase):
         with TestClient(create_app(self.analytics, NvidiaAgent("test-key"))) as client:
             for name, args in (
                 ("inspect_coverage", requested),
+                ("inspect_coverage", {**requested, "visitor_type": "none"}),
                 ("compare_groups", {**requested, "metric": "transactions"}),
             ):
                 with self.subTest(name=name), patch("agent.httpx.post", return_value=tool_response(name, args)):
@@ -133,16 +135,44 @@ class ApiTests(unittest.TestCase):
 
     def test_invalid_tool_arguments_fail_without_execution(self):
         params = {**QUERY, "metric": "visitor_count"}
-        with TestClient(create_app(self.analytics, NvidiaAgent("test-key"))) as client:
-            with patch("agent.httpx.post", return_value=tool_response("compare_weekdays", params)):
+        with TestClient(create_app(self.analytics, NvidiaAgent("test-key", "test-model"))) as client:
+            with patch("agent.httpx.post", return_value=tool_response("compare_weekdays", params)) as post:
                 response = client.post("/api/agent", json={"question": "방문객 수 비교"})
+            post.assert_called_once()
             self.assertEqual(response.status_code, 503)
             self.assertIn("직접 선택", response.json()["detail"])
 
-    def test_rate_limit_shows_manual_fallback(self):
-        limited = httpx.Response(429, request=httpx.Request("POST", NVIDIA_URL))
-        with TestClient(create_app(self.analytics, NvidiaAgent("test-key"))) as client:
-            with patch("agent.httpx.post", return_value=limited):
-                response = client.post("/api/agent", json={"question": "비교해줘"})
-            self.assertEqual(response.status_code, 503)
-            self.assertIn("호출 한도", response.json()["detail"])
+    def test_unavailable_configured_model_retries_with_default_model(self):
+        with TestClient(create_app(self.analytics, NvidiaAgent("test-key", "test-model"))) as client:
+            expected = client.post("/api/compare", json=QUERY).json()
+            for status_code in (502, 503, 504):
+                unavailable = httpx.Response(status_code, request=httpx.Request("POST", NVIDIA_URL))
+                replies = [unavailable, tool_response("compare_weekdays", QUERY)]
+                with self.subTest(status_code=status_code), patch("agent.httpx.post", side_effect=replies) as post:
+                    response = client.post("/api/agent", json={"question": "비교해줘", "context": QUERY})
+                    self.assertEqual(response.status_code, 200)
+                    self.assertEqual(response.json()["result"], expected)
+                    first, second = [call.kwargs for call in post.call_args_list]
+                    self.assertEqual(first["json"]["model"], "test-model")
+                    self.assertEqual(second["json"], {**first["json"], "model": DEFAULT_MODEL})
+                    self.assertEqual(second["headers"], first["headers"])
+
+    def test_unavailable_model_has_no_more_than_one_retry(self):
+        unavailable = httpx.Response(503, request=httpx.Request("POST", NVIDIA_URL))
+        for model, expected_models in ((DEFAULT_MODEL, [DEFAULT_MODEL]), ("test-model", ["test-model", DEFAULT_MODEL])):
+            with self.subTest(model=model), TestClient(create_app(self.analytics, NvidiaAgent("test-key", model))) as client:
+                with patch("agent.httpx.post", return_value=unavailable) as post:
+                    response = client.post("/api/agent", json={"question": "비교해줘"})
+                self.assertEqual(response.status_code, 503)
+                self.assertIn("일시적으로 지연", response.json()["detail"])
+                self.assertEqual([call.kwargs["json"]["model"] for call in post.call_args_list], expected_models)
+
+    def test_authentication_and_rate_limits_do_not_retry(self):
+        with TestClient(create_app(self.analytics, NvidiaAgent("test-key", "test-model"))) as client:
+            for status_code, message in ((401, "인증에 실패"), (403, "인증에 실패"), (429, "호출 한도")):
+                rejected = httpx.Response(status_code, request=httpx.Request("POST", NVIDIA_URL))
+                with self.subTest(status_code=status_code), patch("agent.httpx.post", return_value=rejected) as post:
+                    response = client.post("/api/agent", json={"question": "비교해줘"})
+                    post.assert_called_once()
+                    self.assertEqual(response.status_code, 503)
+                    self.assertIn(message, response.json()["detail"])

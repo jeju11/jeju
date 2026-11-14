@@ -191,6 +191,7 @@ class AnalyticsTests(unittest.TestCase):
         self.assertEqual(result["included_months"], ["2025-01", "2025-03"])
         self.assertEqual(result["excluded_months"], ["2025-02"])
         self.assertTrue(result["has_reversal"])
+        self.assertEqual(result["group_wins"], {"saturday": 1, "sunday": 1, "ties": 1})
         self.assertEqual(result["comparison_basis"], "total")
         groups = {(group["district"], group["visitor_type"]): group for group in result["groups"]}
         self.assertEqual(len(groups), 3)
@@ -202,6 +203,8 @@ class AnalyticsTests(unittest.TestCase):
         self.assertEqual(domestic["monthly_wins"], {"saturday": 1, "sunday": 1, "ties": 0})
         self.assertEqual(tied["monthly_wins"], {"saturday": 0, "sunday": 0, "ties": 2})
         for group in groups.values():
+            self.assertIsNone(group["monthly_winner"])
+            self.assertFalse(group["monthly_reversal"])
             self.assertEqual([item["month"] for item in group["months"]], result["included_months"])
             for index, row in enumerate(group["rows"]):
                 self.assertEqual(sum(item["rows"][index]["total"] for item in group["months"]), row["total"])
@@ -303,6 +306,34 @@ class AnalyticsTests(unittest.TestCase):
         self.assertEqual(group["monthly_wins"], {"saturday": 0, "sunday": 0, "ties": 2})
         self.assertEqual([row["daily_average"] for row in group["months"][0]["rows"]], [100.0, 100.0])
         self.assertEqual([row["days"] for row in group["rows"]], [9, 9])
+
+    def test_monthly_leader_can_differ_from_period_leader_without_between_group_reversal(self):
+        path = self.write_csv(
+            "2025-05,제주시 구도심,토요일,490,4900\n"
+            "2025-05,제주시 구도심,일요일,400,4000\n"
+            "2025-06,제주시 구도심,토요일,390,3900\n"
+            "2025-06,제주시 구도심,일요일,500,5000\n"
+            "2025-07,제주시 구도심,토요일,900,9000\n"
+            "2025-07,제주시 구도심,일요일,400,4000\n"
+            "2025-08,제주시 구도심,토요일,500,5000\n"
+            "2025-08,제주시 구도심,일요일,500,5000\n"
+        )
+        analytics = Analytics(path)
+        self.addCleanup(analytics.close)
+        params = {"start_month": "2025-05", "end_month": "2025-08", "metric": "transactions"}
+        result = analytics.compare_groups(GroupCompareRequest(**params))
+        single = self.compare(analytics, **params)
+        group = result["groups"][0]
+
+        self.assertEqual(result["group_wins"], {"saturday": 1, "sunday": 0, "ties": 0})
+        self.assertFalse(result["has_reversal"])
+        self.assertEqual(group["winner"], "토요일")
+        self.assertEqual(group["winner"], single["winner"])
+        self.assertEqual(group["difference"], single["difference"])
+        self.assertEqual(group["months"][0]["winner"], "일요일")
+        self.assertEqual(group["monthly_wins"], {"saturday": 1, "sunday": 2, "ties": 1})
+        self.assertEqual(group["monthly_winner"], "일요일")
+        self.assertTrue(group["monthly_reversal"])
 
     def test_invalid_ranges_are_rejected(self):
         analytics = self.demo()

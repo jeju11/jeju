@@ -7,6 +7,7 @@ import csv
 import os
 import re
 from collections import Counter, defaultdict
+from collections.abc import Iterable
 from fractions import Fraction
 from hashlib import sha256
 from io import StringIO
@@ -95,6 +96,12 @@ def weekday_count(month: str, weekday: str) -> int:
     full_weeks, remaining_days = divmod(days_in_month, 7)
     offset = (WEEKDAYS[weekday] - first_weekday) % 7
     return full_weeks + int(offset < remaining_days)
+
+
+def weekend_win_counts(winners: Iterable[str | None]) -> dict[str, int]:
+    counts = Counter(winners)
+    saturday, sunday = WEEKEND
+    return {"saturday": counts[saturday], "sunday": counts[sunday], "ties": counts[None]}
 
 
 class GroupCompareRequest(BaseModel):
@@ -430,22 +437,34 @@ class Analytics:
                 {"month": month, **self._summarize_weekends(totals_by_month[month], [month])}
                 for month in included
             ]
-            wins = Counter(month["winner"] for month in months)
+            monthly_wins = weekend_win_counts(month["winner"] for month in months)
+            saturday_wins, sunday_wins = monthly_wins["saturday"], monthly_wins["sunday"]
+            monthly_winner = None
+            if saturday_wins != sunday_wins:
+                monthly_winner = WEEKEND[0] if saturday_wins > sunday_wins else WEEKEND[1]
             totals = {
                 weekday: sum(totals_by_month[month][weekday] for month in included)
                 for weekday in WEEKEND
             }
+            period = self._summarize_weekends(totals, included)
+            period_winner = period["winner"]
             groups.append({
                 "district": district,
                 "visitor_type": visitor_type,
                 "visitor_type_label": VISITOR_TYPE_LABELS[visitor_type],
-                **self._summarize_weekends(totals, included),
-                "monthly_wins": {"saturday": wins[WEEKEND[0]], "sunday": wins[WEEKEND[1]], "ties": wins[None]},
+                **period,
+                "monthly_wins": monthly_wins,
+                "monthly_winner": monthly_winner,
+                "monthly_reversal": (
+                    period_winner is not None and monthly_winner is not None and period_winner != monthly_winner
+                ),
                 "months": months,
             })
+        group_wins = weekend_win_counts(group["winner"] for group in groups)
         return {
             **self._comparison_details(request, included),
-            "has_reversal": set(WEEKEND) <= {group["winner"] for group in groups},
+            "has_reversal": group_wins["saturday"] > 0 and group_wins["sunday"] > 0,
+            "group_wins": group_wins,
             "groups": groups,
         }
 
