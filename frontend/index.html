@@ -3,9 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="제주시와 서귀포시 구도심의 과거 주말 카드 이용을 비교합니다.">
+    <meta name="description" content="제주 공공데이터로 제주시와 서귀포시 구도심의 주말 카드 이용을 살펴보세요.">
     <meta name="theme-color" content="#ffffff">
-    <title>제주 상권 비교</title>
+    <title>Jeju Data Agent · 제주 데이터 에이전트</title>
+    <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" sizes="any">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="Jeju Data Agent">
+    <meta property="og:title" content="Jeju Data Agent | 제주에 대해 무엇이 궁금하세요?">
+    <meta property="og:description" content="제주 공공데이터로 제주시와 서귀포시 구도심의 주말 카드 이용을 비교해 보세요.">
+    <meta property="og:url" content="https://jeju-data-agent.vercel.app/">
+    <meta property="og:image" content="https://jeju-data-agent.vercel.app/assets/jeju-share.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jeju Data Agent 로고, 제주에 대해 무엇이 궁금하세요? 문구와 한라산 일러스트">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/assets/styles.css">
     <script src="/assets/results.js" defer></script>
     <script src="/assets/app.js" defer></script>
@@ -13,81 +27,128 @@
   <body id="top">
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="제주 상권 비교 홈">제주 상권 비교</a>
-      <a class="how-link" href="#how">이용 방법 <span aria-hidden="true">→</span></a>
+      <a class="brand" href="#home" data-view="home" aria-label="Jeju Data Agent 홈">
+        <svg viewBox="0 0 40 24" width="40" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 20h6m-6 0 9-10 3 3 6-9 8 11m-8 4 10-6 8 7"/>
+        </svg>
+        <span>Jeju Data Agent</span>
+      </a>
+      <nav class="site-nav" aria-label="주 메뉴">
+        <a class="nav-link" href="#home" data-view="home" aria-current="page">홈</a>
+        <a class="nav-link" href="#data" data-view="data">데이터 둘러보기</a>
+        <a class="nav-link" href="#results" data-view="results">분석 결과</a>
+      </nav>
+      <a class="nav-link nav-favorite" href="#favorites" data-view="favorites">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4a1 1 0 0 0-1 1v15l7-5 7 5V5a1 1 0 0 0-1-1z"/></svg>
+        <span>즐겨찾기</span>
+      </a>
     </header>
 
     <main class="page-shell" id="main" tabindex="-1">
       <section class="hero-section" id="search-view" aria-labelledby="page-title">
-        <div class="eyebrow" aria-hidden="true">JEJU COMMERCIAL AREA DATA</div>
-        <h1 id="page-title">어느 동네에<br class="desktop-break"> 가게를 열까요?</h1>
-        <p class="intro">제주 구도심의 과거 주말 카드 이용을 비교해 보세요.</p>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c0 4-2 6-6 6 4 0 6 2 6 6 0-4 2-6 6-6-4 0-6-2-6-6Zm8 9v6m-3-3h6"/></svg>
+          제주 공공데이터 기반 AI 서비스
+        </div>
+        <h1 id="page-title" tabindex="-1">제주에 대해 <span class="hero-emphasis">무엇이</span> 궁금하세요?</h1>
+        <p class="intro">제주 공공데이터를 바탕으로 구도심의 주말 카드 이용과 지역별 소비를 쉽게 알려드려요.</p>
 
         <form class="search-form" id="agent-form" aria-busy="false">
-          <label class="query-label" for="question">비교하고 싶은 내용을 적어 주세요</label>
+          <label class="query-label sr-only" for="question">제주 데이터에 대해 질문하기</label>
           <div class="input-row">
+            <svg class="question-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c0 5-2 7-7 7 5 0 7 2 7 7 0-5 2-7 7-7-5 0-7-2-7-7Zm8 0v6m-3-3h6"/></svg>
             <textarea class="question-input" id="question" name="question" rows="1" maxlength="300"
-              aria-describedby="availability-note data-scope" placeholder="지역과 기간을 넣어 질문해 보세요."></textarea>
+              aria-describedby="availability-note" placeholder="예) 제주에서 카드 소비가 가장 많은 지역은 어디인가요?"></textarea>
             <button class="primary-button" id="agent-submit" type="submit" disabled>
-              <span id="submit-label">비교하기</span><span class="button-arrow" aria-hidden="true">→</span>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 3-6.6 18-3.8-7.6L3 9.6 21 3Zm0 0L10.6 13.4"/></svg>
+              <span id="submit-label">질문하기</span>
             </button>
           </div>
         </form>
-        <div class="quick-actions">
-          <button class="example-button" id="example-trigger" type="button" disabled><span class="action-dot" aria-hidden="true"></span>예시로 비교하기</button>
-          <button class="secondary-button" id="settings-button" type="button" aria-controls="manual-panel" aria-expanded="false" disabled>
-            <span class="action-dot hollow" aria-hidden="true"></span>조건 직접 선택<span class="quick-chevron" aria-hidden="true">⌄</span>
-          </button>
-        </div>
         <p class="availability-note" id="availability-note" hidden></p>
-
-        <details class="manual-panel" id="manual-panel">
-          <summary class="sr-only" tabindex="-1">조건 직접 선택</summary>
-          <div class="manual-content">
-            <form id="manual-form" aria-busy="false">
-              <fieldset class="manual-fields direct-picker" id="manual-fields" disabled>
-                <legend class="sr-only">비교 조건</legend>
-                <div class="field"><label for="manual-district">비교 지역</label><select id="manual-district" name="district"></select></div>
-                <div class="field"><label for="manual-visitor">관광객 유형</label><select id="manual-visitor" name="visitor_type"></select></div>
-                <div class="field"><label for="manual-start">시작 월</label><select id="manual-start" name="start_month" required></select></div>
-                <div class="field"><label for="manual-end">종료 월</label><select id="manual-end" name="end_month" required></select></div>
-                <div class="field"><label for="manual-metric">비교 지표</label><select id="manual-metric" name="metric"></select></div>
-              </fieldset>
-              <div class="manual-actions">
-                <p class="manual-hint" id="manual-hint"></p>
-                <button class="primary-button" id="manual-submit" type="submit" disabled>선택한 조건으로 비교</button>
-              </div>
-            </form>
-          </div>
-        </details>
-
-        <div class="hero-rule"></div>
-        <div class="place-note">
-          <div class="stone-mark" aria-hidden="true"></div>
-          <div>
-            <strong>제주의 다음 장면을 숫자로 살펴보세요</strong>
-            <p class="data-scope" id="data-scope" hidden></p>
+        <div class="request-slot" id="home-status">
+          <div class="request-state" id="request-state" hidden>
+            <div class="request-copy" role="status" aria-live="polite">
+              <p id="request-title"></p>
+              <p id="activity-status"></p>
+            </div>
+            <button class="secondary-button" id="retry-button" type="button" hidden>다시 시도</button>
           </div>
         </div>
+
+        <section class="suggestions" aria-labelledby="suggestions-title">
+          <h2 class="suggestions-title" id="suggestions-title">이런 질문도 많이 물어보세요</h2>
+          <div class="quick-actions">
+            <button class="example-button" data-suggestion="transactions" type="button" disabled>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="13" width="4" height="8" rx="1"/><rect x="10" y="8" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+              <span>두 구도심의 주말 이용 건수는?</span>
+            </button>
+            <button class="example-button" data-suggestion="amount" type="button" disabled>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h3"/></svg>
+              <span>제주 지역별 소비는 어떻게 다른가요?</span>
+            </button>
+            <button class="example-button" data-suggestion="trend" type="button" disabled>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M6 15l5-5 4 3 5-6"/></svg>
+              <span>월별 카드 이용은 어떻게 변했나요?</span>
+            </button>
+          </div>
+        </section>
+        <img class="hero-mountain" src="/assets/hallasan.svg" width="1050" height="108" alt="">
       </section>
 
-      <div class="request-state" id="request-state" hidden>
-        <div class="request-copy" role="status" aria-live="polite">
-          <p id="request-title"></p>
-          <p id="activity-status"></p>
+      <section class="utility-view" id="data-view" aria-labelledby="data-title" hidden>
+        <header class="utility-heading">
+          <h1 id="data-title" tabindex="-1">데이터 둘러보기</h1>
+          <p>제주 구도심의 주말 카드 이용 자료를 살펴보고, 비교 조건을 직접 선택하세요.</p>
+        </header>
+        <div class="data-source" id="data-scope" hidden>
+          <h2 id="data-name"></h2>
+          <p id="data-coverage"></p>
+          <a class="data-source-link" href="https://jejudatahub.net/data/view/data/608" target="_blank" rel="noopener noreferrer">제주데이터허브 원자료 보기 <span aria-hidden="true">↗</span></a>
         </div>
-        <button class="secondary-button" id="retry-button" type="button" hidden>다시 시도</button>
-      </div>
+        <div class="manual-panel" id="manual-panel">
+          <form id="manual-form" aria-busy="false">
+            <fieldset class="manual-fields direct-picker" id="manual-fields" disabled>
+              <legend class="sr-only">비교 조건</legend>
+              <div class="field"><label for="manual-district">비교 지역</label><select id="manual-district" name="district"></select></div>
+              <div class="field"><label for="manual-visitor">관광객 유형</label><select id="manual-visitor" name="visitor_type"></select></div>
+              <div class="field"><label for="manual-start">시작 월</label><select id="manual-start" name="start_month" required></select></div>
+              <div class="field"><label for="manual-end">종료 월</label><select id="manual-end" name="end_month" required></select></div>
+              <div class="field"><label for="manual-metric">비교 지표</label><select id="manual-metric" name="metric"></select></div>
+            </fieldset>
+            <div class="manual-actions">
+              <p class="manual-hint" id="manual-hint"></p>
+              <button class="primary-button" id="manual-submit" type="submit" disabled>선택한 조건으로 비교</button>
+            </div>
+          </form>
+        </div>
+        <div class="request-slot" id="data-status"></div>
+      </section>
 
       <section class="conversation" id="conversation" aria-label="분석 결과" hidden>
+        <div class="request-slot" id="results-status"></div>
+        <div class="empty-state" id="results-empty">
+          <h1 id="results-title" tabindex="-1">분석 결과</h1>
+          <p>아직 분석 결과가 없어요. 제주 데이터에 대해 질문해 보세요.</p>
+          <a class="secondary-button" href="#home" data-view="home">질문하러 가기</a>
+        </div>
         <div id="conversation-history"></div>
+      </section>
+
+      <section class="utility-view" id="favorites-view" aria-labelledby="favorites-title" hidden>
+        <header class="utility-heading">
+          <h1 id="favorites-title" tabindex="-1">즐겨찾기</h1>
+          <p>이 브라우저에 저장한 질문을 다시 열어볼 수 있어요.</p>
+        </header>
+        <p class="empty-state" id="favorites-empty">저장된 질문이 없어요. 분석 결과에서 질문을 즐겨찾기에 추가해 보세요.</p>
+        <ul class="favorite-list" id="favorites-list" aria-label="저장한 질문" hidden></ul>
+        <div class="request-slot" id="favorites-status"></div>
       </section>
     </main>
 
-    <footer class="page-footer" id="how" tabindex="-1">
-      <span>제주 상권 비교</span>
-      <span>질문을 입력하거나 비교 조건을 직접 선택해 주세요.</span>
-      <a id="header-source-link" href="https://jejudatahub.net/data/view/data/608" target="_blank" rel="noopener noreferrer">제주데이터허브 608번 <span aria-hidden="true">↗</span></a>
+    <footer class="page-footer">
+      <span>Jeju Data Agent</span>
+      <a href="https://jejudatahub.net/data/view/data/608" target="_blank" rel="noopener noreferrer">제주데이터허브 608번 <span aria-hidden="true">↗</span></a>
     </footer>
     <noscript><p class="availability-note">이 화면을 이용하려면 자바스크립트를 켜 주세요.</p></noscript>
   </body>

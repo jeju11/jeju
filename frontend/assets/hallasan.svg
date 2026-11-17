@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="108" viewBox="0 0 525 54">
+  <!-- Hallasan traced from the supplied homepage reference. Each layer restores a shade of the engraving. -->
+  <g fill="#a7beca" fill-rule="evenodd">
+    <path opacity=".18" d="
+      M272 0h1v1h3v1h6v1h2v-1h4v-1h2v1h2v1h19v1l6 1v1h2v1h2v1h3v1h3v1h4v1h4v1l6 1v1l5 1v1h4v1l5 1v1h4v1h3v1h3v1h3v1h5v1l10 1v1l5 1v1l10 1v1h2v1l7 1v1h6v1h2v1h5v1h5v1h7v1l17 1v1h11v1h5v1h3v-1h5v1h2v1h2v1h2v1h2v1h4v1h18v1h8v1h2v1l-16 -1l-1 2h3v-1h1v2h-23v-1h-3v2h-1v-1h-1v1h-50v-1h-1v1h-2v-1h-183v1h-1v-1h-79v1h-1v-1h-9v1h-2v-1h-6v1h-69v-1h-41v-1h9v-1h-14v-2h17v-1h17v-1h8l1 -2h2v-1h2v-1h3v1h2v1h6v-1h6v-1h2v-1h4v-1h2v1h7v-1h10v-1h8v-1h10v-1l4 1v-1h7v-1h3v-1h6v-1h3v-1h5v-1h4v-1h3v-1l9 -1v-1h2v-1h4v-1h3v-1h3v-1h3v-1h4v-1h4v-1h3v-1h4v-1h3v-1h2v-1h3v-1l5 -1v-1l5 -1v-1h5v-1h5v-1h6v-1l5 -1v-1h3v-1h2v-1h4l1 -2h15l1 -2h3zM273 2h-1v1h1zM278 3h-1l1 2h3v-1h-2v-1zM256 4h-1v2l-2 -1v1h-1l-3 4h2v-2h1v-1h1v1l6 -1l1 -2h-1v1h-2v-2zM271 4h-1v1h-2v1h-2v1h-2v1h-4v1l-6 1v1h3v1h-3v1h-1v-2h-3v1l2 1v2h-1v1h-1v2h-1l1 2h2v-2h1v-1h1v2h1v1h2v-2h-1v-1h-2v-2h3v1h1v-2h-1v-1h3l2 3h1v-1h-1v-2h1v1h1v4l3 2v-1h-1v-6h1v1h1v-1h-1v-2l-2 -1v-2h2v-1h1v4h1l1 4l2 -1v2h1v-1l4 -1l-3 4h1l2 -3h1v1l4 -1v-2h1l3 -4h1v2h-1l-2 3h1v-1h2v-1h2v1h-1v1h-2l-2 3h1v-1h4v-1h1v-2h1v1h2v-3l-2 1v-2h1v-1h2v1h4v-1l-4 -1v-1h1v-1h-1v-2h-1v2h1v1l-7 -2v3h-4v1h-2v-1h1v-1h2v-1h-2v1h-5v-1h-1l1 5h-1v2h-2v-3h-1v-6z
+      M296 4h-1v1h2v-1zM299 4h-1l-1 4h2v1h2v1h1v-3h-1zM302 4h-1v1h1zM309 5h-1l1 2h2v-1h1v-1zM306 6h-1v1h1v4h1v1h-2v-1h-1v1h1l1 2h2v1h3l-1 -2h2v1h1v-1h-1v-1l-4 -3v-2z
+      M304 8h-1v1h1zM281 9v1l-3 2v-2h1v-1zM289 8h1v2l-2 1v-2h1zM317 9h-1v2h1v1h3v-1h-1v-1h-2zM247 10h-1v1h-3v1h-3v1h-2v1l5 -1v-1h3v-1h2v-1z
+      M237 11h-1v1h2v-1zM231 12h-1v1h-3v1h4zM233 12h-1v1h2v-1zM300 12h-1v1l2 1zM308 11h1v2h-1z
+      M322 12h-1v1h1zM324 13h-1v1h1zM237 14h-1v1h1zM303 14h-1v1h2v-1zM224 15h-1v1h1z
+      M233 15h-1v1h1zM269 15h-1v1h1zM306 15h-1v1h2v-1zM313 15h-1v1h1zM231 16h-1v1h1z
+      M238 16h-1v1h1zM260 16h-1v1h1zM291 16h-1v1h2v2h1l1 -2h-2v-1zM270 17h-1v3h1zM296 17h-1v1l2 1z
+      M227 18h-1v1h1zM235 25h-1v2h1zM383 27h-1v1h1zM374 29h-1v1h1zM258 33h-1v1h1z
+      M262 33h-1v1h1zM201 34h-1v1h4v-1zM256 34h-1v1h1zM338 34h-1v1h2v1l-9 -1v1h-1v2h-1l-1 -2h-1v2l-7 -1l-1 2h-2v-1h1v-2h-1v2h-2v1h2v1l4 -1v1h2v1h7v1h2l1 2h-3v-1h-5v-1h-7v-1h-3v-1h-9v-1h-1v1h-1v-1h-5v1h-3l1 -2h-1v1h-2v-1h-1v2h-12v-1h-5v2h-1v-2h-4v1h-5v1h-7v1l-15 1v1l-2 1v-2h-1v1h-4v-2h8v-1h2v-1h-11l1 2h-4v-2l2 1v-3h-2v1l-14 1v3h-2l1 -2h-2v1l-4 1v-1h1v-1h-1v-2h-1v2h-5v-1h-9v1h-1v2h1v-1h3l1 2h-5v1h6v-3h2v1h-1v3h2v-1h6v-1h11l-1 -2h4v2h3v-1h8v1l-10 1v1h-8v1h3v1h7v-2h1v2h2v1h5v-1l5 1v-1h-3v-1h-7v-1l11 -1l-1 2h3v1l5 -1v1h3v1h5v-2h-6v-2h2v1l5 -1v1h3v1h5v1h1l1 -2h-6v-1h9v1l4 -1v1h5v1h14v-1h-3v-1h-5v-2h2v1h10v1l2 -1v1h5v1h1v-1h18v1l12 1v1h4v-1h8v1h2v1h7v-1h2v1h4v-1h5v1h1v-1h1v1h3v-1h6v1h2v-1h3v-1h2v1h4v-1h3v-1h8v-1h-8v-1h-1v2h-1v-1h-7v-1h-3v-1h-8v-1l-11 -1v-1h-6v-1h-2v1h-1l-1 -2h4v-1h-2v-1h-2v-1h-5v1h1l-1 2h2v1h-10v1h-1v-1h-3v1h-3v-2h-1v-1h2v2l2 -1v-2h1v1h3v1h3l-1 -2l5 -1v-1zM198 35h-1v1h2v-1z
+      M250 35h-1v1h1zM355 35h-1v1h2v1h1l-1 2h10v1h1v-1h2v1h6v1h3v1h1v-1h3v1h5v2h1v-1h7v1h10v1h14v-1h-10v-1h-3v-1h4v1h10v1h10v-1h-5v-1h8v1h5v-1h3v-1h-16v-1l-19 -1v-1h-1v2h-4v-1h-1v-2h-5v1h-9v-2h-1v2h-2v-1h-3v-1h-6v-1h-3v2h-3v-1h-5v1h-1v-2h-3v1h-3v-1zM370 35h-1v1h1zM172 36h-1v1h1zM191 36h-1v1h4l-1 2h4v-1h1v-1h-1v1h-2l-1 -2z
+      M204 36h-1l-1 2h3zM243 36h-1v1h-5l-1 2h1v-1h3v1h7v2h2v-2h-1l1 -2h-1v1h-3v-1h2v-1zM165 37h-1v1h5v-1zM181 37h-1v1h-10v1h2v1h20v-2h-2v1h-5v-2zM188 37h-1v1h2v-1z
+      M343 37h-1v1h2v-1zM159 38h-1l1 2h-2v-1h-7v1l-25 1v1h8v1h5v-1h1v1h1v-2h1v1h10v-1h2v-1h2v1h8v-1h-1v-2zM215 38h-1v1h5v-1zM261 38h-1v1h-5v1h8v-1zM266 38h-1v1h3v-1z
+      M288 38h-1v1h4v-1zM328 38l1 2h-2v-2zM376 37h2v1h-2zM403 38h-1v1h2v-1zM251 39h-1v2h1v-1h3v-1z
+      M351 39v1h-1v-1zM398 38h1v1h-1zM167 40h-1v1h5v-1zM334 40h2v1h-2zM379 39h1v1h-1z
+      M393 39h4v1h-4zM186 41h-1v1h8v-1zM271 40h1v2h-3v-1h2zM340 40h1v1h-1zM409 40h4v1h-4z
+      M158 42h-1v1h3l1 2h1v-1h3v1l2 -1v1h7v1h3v-1h-3v-1h-6v-1h6v-1h-6v1h-8v-1zM184 42h-1v2h6v-1h-5zM227 41h2v1h-2zM342 41h8v1h-8zM419 41h2v1h-2z
+      M203 43h1v1h-1zM204 42h6v1h-6zM283 42h1v1h-1zM300 42h2v1h-2zM351 42h1v1h-1z
+      M354 42h3v1h-3zM399 42h2v1h-2zM402 42h2v1h-2zM179 44h-1v1h1v1h2v-2h-1v1h-1zM279 43h1v1h-1z
+      M280 44h1v1h-1zM279 44v1h-3v-1zM303 43h2v1h-2zM334 43h2v1h-2zM337 43h2l1 2h-2z
+      M359 43h1v1h-1zM362 43h4v1h-4zM79 45h-1v1h3v-1zM100 45h-1v1h1zM187 45h-1v1h8v-1z
+      M341 44h1v1h-1zM367 44h1v1h-1zM472 45h-1v1h-2v1l-4 -1v1h2v1h2v1h1v-1h4v1h2v1h2v-1h1v1l5 -1v-2h-4v-1h-3v-1h-1v1zM105 46h-1v1l-5 1v2h4v-2h5l-1 -2zM185 46h-1v1h1z
+      M206 46h-1v1h2v-1zM209 46h-1v2h7v-2h-2v1h-4zM343 45h4v1h-4zM350 45h1v1h-1zM370 45h1v1h-1z
+      M453 46h-1v1h-3v3h1v1h3v-2h1v-1h4l1 2h4v-2h-1v-1zM474 46v1h-2v-1zM94 47h-1v1h1zM112 47h-1l-1 2h3v1h3v1h1v-2h1v-1h-4v-1zM203 47h-1v1h1z
+      M248 46h1v1h-1zM275 47h-1l-1 2h1v-1h4v-1zM353 46h1v1h-1zM356 46h3v1h-3zM360 46h2v1h-2z
+      M376 46h1v1h-1zM83 48h-1v1h3v-1zM91 48h-1v1h1zM126 48h-1v1h-3v1h5zM155 48h-1v1h2v-1z
+      M259 48h-1v1h1zM270 48h-1v1h1zM476 47h1v1h-1zM486 48h-1v1h8v-1zM70 49h-1v1h1z
+      M72 49h-1l1 2h3v-1h1v-1zM147 49h-1v1h2v-1zM242 49h-1v1h2v-1zM334 49h-1v1h1zM429 49h-1v1h1z
+      M441 49h-1v1l5 1l-1 -2zM447 49h-1v2h2zM479 48h2v1h-2zM15 49h6v1h-6zM318 50h-1v1h1z
+      M1 50h4v1h-4zM7 50h4v1h-4zM515 50h9v1h-9zM26 51h1v1h-1z
+    "/>
+    <path opacity=".26" d="
+      M270 1h5v1h-3l-2 3h-2v1h-2v1l-7 1v1h-3v1h-3v1h-4v-1h3v-1h2v-1l6 -1l2 -3l6 -1v-1h2zM275 2h5v1l11 -1v1h4v1h-3v2h-2v-1h-7v-1l-7 -1v1h1v2h-1v-1l-2 1v-1h-1v-2l2 1zM253 3h9v1h-8l-3 4h-2v1h-2v1h-2v1l-6 1v1h-2v1h-3v2h1v-1h3v-1h3v-1h4v1h1l-1 -2h2v1h2v-1h1v1h2v2l-3 2v2h1v1h-2v1h2v1l3 -2v-3h1v2h1l-1 2l2 -1v2h1v-3l2 1l-2 -3h-3l1 -2h2l1 2h2v1l3 2v-1l-4 -3v-2h1v1h2v1l2 1v2h1v1h2v1h1v-2l-2 -1v-4l2 1l1 6h2v-2h-1v-2h-1v-3h1v1h2v2l2 -1v2h-1v1h2l2 -3l7 -1l-1 2l5 -1v1h3v2h1v1h1l1 -2h2v1l2 1v-3h-2v-1h-1v1h-1v-1h-4v-1h3v-4h-1v-1h3v1h2l1 2h2v1h2v1h2v1h3v1h1l-1 -2h2v1h4v1h1v-2h1v-1l-4 -3l1 -2l-2 1l-1 -2h2v-2h2v-1h3v1h-2v1l4 -1v1h3v1h2v1l7 1v1h4v1h3v1l6 1v1h2v1h3v1h3v1h3v1h4v1h3v1h4v1h3v1h3v1l11 1v1h2v1h-3l1 2h1l1 -2l7 1v1h-3v1h3v-1h7v1h2v1h2v1h4v1h7l1 2h4v1h5v1h5v1h7v1h-2v1h3l1 -2h3v1h5v1h10v1h1v-1h2v1h5v1h12v1h2v1h1v1h2v1h-3v-1h-7v1h-7v1h-4v-1h-9v1h-2v2h-8v1h-3v1h8v-1h1v1h2v-2h1v2h4l2 -3h2l1 2h6v-2h-1v-1h3v1h2v1h2v-1h4v1h2v2h-14v1l-2 -1l1 2h-2l-1 -2h-1v1h-3v1h-2v-1h-2v1h-1v-1h-318v1h-30v-1h-2v1h-2v-1h-64v-1h11v-1h-1v-1h-1v1h-2v-1h-1v1h-4v-1h-5v-1h11v-1h11v1h1v-1h9v-1l5 -1l1 -2h6v1h12v-1h2l1 -2h14v-1h10v-1h15v-1h7v-1l12 -1v-1h4v-1h3v-1h5v-1h4v-1h3v-1h5v-1h3v-1h3v-1h4v-1h3v-1h3v-1h3v-1h4v-1h4v-1h3v-1h4v-1h2v-1h2v-1h3v-1l6 -1v-1l5 -1v-1h6v1h-4l-1 2h-2v2h1v-1h4l1 -2h2l1 2h-2v1h-2v1h-1v1h2l1 -2h3v-1h1v-1h-2v-1l7 -2v-1h-4v-1h5v-1h3v-1h2v-1h3v-1h2v-1h3zM300 3h10v1h3v1h-5v-1h-1v1l-4 3v2h-1v-4h-1l1 -2h-2zM283 5v1h-2v-1z
+      M297 4h1v1h-1zM307 5h1v1h-1zM275 6h1v3h-1zM279 5h1v2h-2zM294 5h2v2h-1z
+      M252 7h1v1h-1zM246 8h-1v1h1zM282 7h2v1h-1v1h-2zM304 8h2v3l-2 -1zM308 7h1v1h-1z
+      M244 9h-1v1h1zM266 8h2v4h-1zM275 9v3h-1v-3zM297 8h1v1h-1zM317 9h-1v3h1v1h2v-1h1v1h2l2 3h1l-1 -2h2v1h1l-1 -2h-3v-1h-2v-1h-2v-1z
+      M279 9h1v2h-1zM299 9h1v1h-1zM234 11v1h-5v-1zM249 11v1h-2v-1zM286 10h1v1h-1z
+      M286 11v1h-1v-1zM292 11v1h-1v-1zM326 11h-1v1h2v-1zM268 12h1v2h-1zM285 12v1h-1v-1z
+      M299 11h1v1h-1zM300 12l6 1l1 2l-5 -1v-1h-2zM284 13v1h-1v-1zM308 12h1v1h-1zM243 14h-1v1h1z
+      M258 13h1v1h-1zM284 14h2v1h-2zM286 13h1v1h-1zM226 14h1v1h-1zM240 15h-1v1h2v-1z
+      M237 16h-1v1h2v-1zM246 16h-1v1h1zM287 18h-1v1h1zM220 19h-1v1h1zM224 19h-1v1h1z
+      M280 19h-1v1h1zM289 19h-1v1h1zM217 20h-1v1h1zM250 20h1v1h-1zM296 20h-1v1h1z
+      M247 21h-1v2h1zM201 22h-1v1h1zM204 22h-1v1h2v-1zM199 23h-1v2h1zM210 24h-1v1h1z
+      M234 24h-1v2l2 1v-3zM229 25h-1v2l2 -1v-1zM243 25h-1v1h1zM246 25h-1v1h1zM348 26h-1v1h1z
+      M378 26h-1v1h1zM380 26h-1v1h1zM367 27h-1v1h1zM190 28h-1v1h1zM212 28h-1v1h1z
+      M387 28h-1v1h1zM208 29h-1v1h1zM353 29h-1v1h1zM373 29h-1v1h3v2l2 -1v-2h-1v1h-1v-1zM271 30h-1v1h1z
+      M351 30h-1v1h1zM379 30h-1v1h2v-1zM280 31h-1v1h1zM355 31h-1v1h1zM383 31h-1v1h2v-1z
+      M265 32h-1v3h1l-1 2h2v1h-9v-1h-3l-1 -2h4v-1h2v-1h-2v1h-5v2h-2v-1h-2v1h-8v1l-10 1v1h-9l1 -2h-1v1h-7v-1h-1v1h-2v1h-5v1l-22 1v-1h9v-1l13 -1l-1 -2l-6 1v-1h2v-1h6l-1 -2h-2v1h-5v1h-5v1l-17 1v1h-6v-1h4v-1h-7v1l-13 1v1h-5v1h-4v-1h-1v1h-8v1h-2v-1h-2v1h-14v-1l-5 1v1h17v1l24 -1v2l4 -1v1h2v1h2v-1h1v1h9v1h8v1h4v-1h6v1h1v-1h3v1h1v-1h1v2h2v-1h1v1l6 -1v1h6v1h4l1 -2h2v1h3v1h-3v2h2v-1h1v-1h2v-1h2v1h5v1h3v-1h5v1h3v1h1l1 -2h-3v-1h5v-1h1l1 2h9v-1h1v1h2l1 -2h1v1h5v1h8v-1h6v-1h3v1h1v-1h9v-2h5v1h3v1h1v-1h4v-1h2v1h2v-1h1v1h1v-1h2v1l5 -1v1h6v1h7v1h-1v2h3v-1h-2v-1h7v-1h6v2h17v-1h3v1h4v1h1v-1h2v-1l7 1v-1l5 -1v1h2v1h1v-1l5 -1v-1h1v1h1v-1l4 1v-1h5v-1h1v1h3v-1h1v1h1v-1h1v1h1v-1h4v1l5 -1v1h1v-2h13v-1h4v-1h2v1h3v-1h6v-1h-20v-1h2v-1h-7v1l-18 -1v-1h-6v-1h-4v-1h-2v1h-5v1h-3v-2h-2v1h-5v-1h-4v-1h-9v1h-1v-1h-2v-1h-3v1h-3v-1h-1v1h-4v1h-1v-1h-4v-1h-8v-1h-1v1h-2v1h-2v-1h-1v1h-7v1h-7v1l-5 -1l1 2l-5 -1v1l5 1v1l-11 -1v-1h-1v1h-6v-1h-16v1l-4 -1v1h-7v-1h2v-1h-4v1h-2l2 -3h-4zM273 32h-1v1h1zM381 32h-1l-1 2h1zM262 33h-1l-1 2h2v-1h1v-1zM273 34h-1v1h1z
+      M275 34h-1v1h1l-1 2l2 1v-1h-1v-1h1zM283 34h-1v1h1zM321 34h-1v1h1zM388 34h-1v1h1zM398 34h-1v1h1z
+      M410 34h-1v1h1zM181 35h-1v1h2v-1zM271 35h-1v1h1zM364 35v1h-1v-1zM252 36h1v1h-1z
+      M261 36h-1v1h1zM290 36h-1v1h1zM195 36h2v1h-2zM253 37h1v1h-1zM341 36h4v1h-4z
+      M354 36h2v1h-2zM191 37h2v1h-2zM245 37h1v1h-1zM254 38h2v1h-2zM186 38h2v1h-2z
+      M221 39v1h-6v-1zM333 38h6v1h-6zM341 38h1v1h-1zM344 38h2v1h-2zM165 39h2v1h-2z
+      M213 39h1v1h-1zM237 39h1v1h-1zM240 39h5v1h-5zM266 39h2v1h-2zM288 39h2v1h-2z
+      M296 39h1v1h-1zM316 40h3v1h-3zM357 39h7v1h-7zM394 39h2v1h-2zM402 39h2v1h-2z
+      M181 40h2v2h-17v1h-3v-1h-8v-1h26zM254 40h2v2h-2zM257 40h7v1h-7zM365 40h1v1h-1zM367 40h2v1h-2z
+      M370 40h1v1h4v1h-5zM410 40h2v1h-2zM426 40h1v1h-1zM232 41h1v1h-1zM249 41h4v1h-4z
+      M321 41h7v1h-2v1h-1v-1h-4zM328 42h2v1h-2zM346 41h1v1h-1zM375 42h5v1h-5zM144 43h-1v1h10v-1z
+      M186 42h2v1h-2zM202 42h1v1h-1zM239 42h1v1h-1zM241 42h2v1h-2zM244 42h2v1h-2z
+      M426 42h1v1h-1zM89 44h-1v1h1zM91 44h-1v1h2v-1zM95 44l-2 1l1 2h-2v1h-1v-2h-1v1h-3v1h2v1h4v-1h2v-1l8 -1v1l-6 1v2l5 1l1 -2l5 -1l-1 -2h-4v-1h-4v-1h-2v2h-2v-1h1v-1zM195 43h2v1h-2z
+      M231 43h1v1h-1zM233 43h2v1h-2zM388 43h2v1h-2zM78 45h-1v1h2l-1 2l2 -1l2 4h1v-2h3v-1h-4v-1h-2v-1h3v-1zM185 44h1v1h-1z
+      M189 44h1v1h-1zM217 44h3v2h-11v-1h8zM223 44h4v1h-4zM285 44h1v1h-1zM287 44h4v1h-4z
+      M385 44h1v1h-1zM396 44h7v1h-7zM75 46h-1v1h1zM200 45h1v1h-1zM201 46h2v1h-2z
+      M205 45h2v1h-2zM266 45h1v1h-1zM269 45h1v1h-1zM296 46h-1v1h2v-1zM302 45h1v1h-1z
+      M112 47h-1l-1 2h2l1 2h5v-2h1v-1zM227 46h1v1h-1zM233 46h6l1 2h-2v-1h-5zM251 46h3v1h-3zM257 46h1v1h-1z
+      M258 47h2v1h-2zM271 46h4v1h-4zM271 47v1h-4v-1zM357 46h1v1h-1zM481 46h1v1h-1z
+      M59 48h-1v1h1zM74 48h-1v1h-7v1h-4v1h14v-2zM125 48h-1v1h-2v2h4v-1h2l-1 -2zM155 48h-1v1h2v-1zM324 48l-2 1v2h1v-2h1z
+      M488 47h4v1h-4zM494 47h7v1h4v1h-9v-1h-2zM24 48h5l1 2h-3v-1h-3zM48 49h-1v1h1zM61 49h-1v1h1z
+      M88 49h-1v1h-2v1h3zM95 49h-1v1h1zM109 49h-1v1h1zM131 49h-1l-1 2h4v-1zM146 49h-1v1h3v1h1v-2z
+      M283 49h-1v1h1zM319 49h-1l-1 2h1zM326 49h-1l-1 2h2v-1h1v-1zM428 49h-1v2h2v-2zM435 49h-1v1h1z
+      M496 49v1h-1v-1zM16 49h4v1h-4zM141 50h-1v1h1zM162 50h-1v1h1zM321 50h-1v1h1z
+      M340 50h-1v1h2v-1zM356 50h-1v1h1zM363 50h-1v1h3v-1zM379 50h-1v1h2v-1zM393 50h-1v1h1z
+      M481 49h8v1h5v1h4v1h-12v-1h2v-1h-5l1 2h-3v-1h1zM481 50v1h-1v-1zM510 49h2v1h-2zM516 50h7v1h-7z
+    "/>
+    <path opacity=".34" d="
+      M271 1h1v2l-2 1l-1 -2h2zM273 1h1v1h-1zM269 3v2h-2v1h-2v1l-7 1v-1l4 -1l1 -2h4v-1zM275 2h1v2h-1zM287 2h3v1h3v1h-1v1h-5z
+      M254 3h4v1h-4zM273 3h1v1h-1zM280 3h6v1h-6zM303 3h3v3h-1v1h-3v-3h1zM251 5h1v1h-1z
+      M251 6v1l-3 2v-3zM274 5h1v1h-1zM316 6h2v1h2v1h2v1h3l-1 2h1v1h2v1h-3v-1l-4 -1l-1 -2h-4v2h-2v-1h-1l1 -2h-1v1h-3v-1h2v-1h5zM244 7h3v1h-3zM244 8v1h-1v2h-3v1l-2 -1v-1h2v-1z
+      M258 8v1h-2v-1zM245 9h1v1h-1zM252 9h3v1h-3zM312 10v1h-1v-1zM325 10h3v1h-3z
+      M235 10h1v1h-1zM274 10h1v1h-1zM312 11h1v1h-1zM315 11h1v1h-1zM230 11h3v1h-3z
+      M247 11h1v1h-1zM247 12v1h-2v-1zM267 11h1v1h-1zM268 12h1v2h-1zM291 11h1v1h-1z
+      M294 11h2v2l2 -1v1l2 1v2h1v-1h2v1h3v1h2v-2h1v1h3v1h3v-3h2v-1h2v-1h1v3h3v1l5 -1v1h1v1h2v1h1v-2h-3l-2 -3h2v-2h4v1h3v1l6 1v1h2v1h3v1h3v1h3v1h3v1l8 1v1h2l-1 2h2v-1h3v1h6v1h-1l1 2h3v1h2v1h2v1h-4v-1h-7v-1h-3l-1 -2h-1v1h-2l-1 2h1v-1l6 1l-1 2h2v1h1v-1h2v2l5 1v1h3l1 2h-3v-1h-2v-1l-10 -1l1 -2h-1v1h-2v1h2v1h-4v-1h-5v1h-1v-1h-3v1h-1v-1h-4v1h-1v-1h-9v-1h-3v1h-2v1h-1v-1h-3v1h-1v-1h-3v1h-2v-1h-1l-1 2h-4v-1h1v-1h-1l1 -2l-2 1v-1h-3v-1h-1l1 2h3v1h-1l1 2h-5v1h-3l1 2h-7v-1h-2v1h-4v-1h-5v-1h-2v-1h-4v-1h-4v1h-4v1h-1v-1h-1l1 -2l4 1v-1h-2l1 -2h-2v-1h-2v-1h-4v-1h-1v1h-3v2h-1v-1h-4v1h-4v2h-1v-2h-2v1h-2v1h-4v1h-9v1l-10 1v1h-6v-1h-1v-2h-1v2h-1v-1h-2v1h-6v-1h-1v1h-3v1h-1v-1h-2l-1 2h-6v-1h5v-1h-2v-1h-2v-1h5v-1h2v1h1v-1h-1l1 -2h-1v-1h-2v1h-6v1h-2v1h-2v1h-6v1h-9v-1h-6v1h-2v-1h-3v1h-6v1l-12 1v1h-5v1h-1v-2h1v-1h-1v-2l5 1l-1 -2h3v-1h6v-1h3v-1h3v-1h6v-1h2v-1l10 -2v-1h2v-1h4v-1h4v-1l8 -1v-1h3v-1h2v-1h2v-1l6 -1v-1l5 -1v-1h3l-1 2h-3v3h1v1h-3v1h-2l-1 2h1v-1h3v-1l5 1l1 -2h3v-1h2v-1h2v-1h4v2h1v-1l5 -1v-1h3v-1h2v-1h4v2h-1v1h-1v2l-4 3v2h-1v1h-2v3h-1v1h1v-1h2v-1l2 1v-2h1v1h2v-2h-1v-1h2l1 -2h1v1h2v1h1v-2h1v1l2 1v-2h-1v-1h2v2h1l1 -2h2l-1 2l2 1l-1 -2h1v-2h1v1h2v1h3v1h1v-4h-1l-1 -4l2 1v2l2 1v2h1v-1l4 -3v1h2v1h-1l-2 3h2v-1l2 -1v-2h-1v-1h3v2h2v-1h1v2h-2v1h2v-1h1v1h2v2h1v-2h-1l-2 -3h4v3l5 -1v1h-2v2h1v-1h1v-1h2l1 -2h-1v-1h-2v-1h-3v-4h1zM316 12h1v1h-1zM224 12h3v1h-3zM242 13h2v1h-2zM335 14h-1v2h1z
+      M232 14h1v1h-1zM239 14h2v1h-2zM247 15h-1v1h-2v1h-2v1l5 -1v-1h1v-1zM259 14h1v1h-1zM260 15h1v1h-1z
+      M227 15h4v1h-2v1l-4 1zM236 15h2v1h-2zM261 16h1l1 2h-2zM283 15h1v1h-1zM217 17h-1v1h-2v1h3v-1h1v-1z
+      M257 16h1v1h-1zM258 17h1v1h-1zM266 16h2v3l-2 -1zM317 17h-1v1h1zM337 17h-1v1h1z
+      M221 17h3l1 2h-2v-1h-2zM259 18h1l1 2h-2zM263 18h1v1h-1zM221 19h2v1h-2zM239 19h-1v1h2v-1z
+      M268 19h1v1h-1zM315 19h-1v1h1zM307 20h-1v1h1zM250 20h1v1h-1zM276 21h-1v1h1z
+      M283 21h-1l-2 3h1l1 -2h2v-1zM201 22h-1v1h-3v1h-3v2h3v-2h1v1h2v-1h1zM204 22h-1v1h3v-1zM270 23h-1v1h1zM285 23h-1v2h1z
+      M288 23h-1v1l2 1v-2zM291 23h-1v1h1zM306 23h-1v2h1zM334 23h-1v1h1zM352 23h-1v1l2 1z
+      M208 24h-1v1h3v-1zM231 24h-1v1h-3v1l2 1zM233 24h-1l1 5h-2l-1 2l5 -2v-3h1v-1h-1v-1zM244 24h1v1h-1zM260 24h-1v1l2 1z
+      M283 24h-1v1h1zM338 24h-1v1h1zM342 24l-4 2v1h1v-1l4 -1l-1 2h-2l1 2h3v1h3v1h2v-1h1v1h2v-1h1v3l2 -1v-2h2v-1h-2v1h-1l-1 -2l-4 1v-2h-1v-1h-1v1h1v2h1v1h-2v-1h-1v-2h-1v2h-1v-2h-1v-1h2v-1h-2v-1zM355 24h-1v2h2v-2zM361 24h-1v1h1z
+      M268 25h-1v1h1zM281 25h-1v1h1zM303 25h-1v1h1zM358 25h-1v1h1zM376 25h5v1h-5z
+      M279 26h-1v1h1zM290 26h-1v1h1zM196 27h-1l-1 2h1zM200 27h-1v1h1zM214 27h-1v1h-4v1h-2v1h2v-1h4z
+      M224 27h-1v1h1zM283 27h-1v1h1zM285 27h-1v1h1zM287 27h-1v1h1zM300 27h-1v1h-2v1l4 -1v-1z
+      M382 26h1v1h-1zM190 28h-1v1h1zM227 28h-1l-1 2h1zM281 28h-1v1h1zM188 29h-1v1h-2v1h2z
+      M229 29h-1v1h1zM239 29h-1v1h2v-1zM261 29h-1v1h1zM296 29h-1v1h1zM388 28h1v1h-1z
+      M177 30h-1v1h1zM236 30h-1v1h2v-1zM301 30h-1v1h1zM365 30h-1v1h1zM383 30h3v1l-2 1z
+      M386 29h1v1h-1zM392 29h5v1h2v1h3v1h-2v1h2v1h2v-1h-2v-1l6 1v1h-3v1h-4v-1h-4v1h4v1h4v-1l2 1v-1h1v1h5v2h1v-1h1v1h2v-1h1v1h6v-1h2v1h2v1h-17v-1h-5v-1h-4v1h-1v-1h-2v-1l-9 1v-1h4v-1h-3v-2h-3v-1h-2v-1h5l2 3h3v-1h-2v-3h-2zM174 31h-1v1h1zM179 31h-1v1h2v-1zM197 31h-1v1h1z
+      M255 31h-1v1h1zM278 31v1h-2v-1zM396 31h-1v1l4 1v-1h-2v-1zM185 32l-2 1l1 2h1l-1 -2h2v-1zM188 32h-1v1h2v-1z
+      M208 32h2v1h-2zM217 32h-1v1h1zM303 32h-1v1h1zM305 32h-1v1h1zM332 32h-1v1h2v-1z
+      M376 31h1v1h-1zM377 32h1v1h-1zM378 31h1v1h-1zM380 31h1v1h-1zM384 32l1 2h1v-1h2l-1 2h1v-1h2v2h-5v-1l-2 -1v-2z
+      M173 33h-1v1h2v-1zM214 33h-1v1h1zM267 32h1v1h-1zM267 33v1h-1v-1zM273 32h2v1h4v1h-1v1h-2v-1h-3z
+      M269 33h1v1h-1zM270 34h1v1h-1zM314 34h-1v1h1zM319 34h1v1h-1zM410 33h1v1h-1z
+      M411 34h3v1h-3zM257 34h1v1h-1zM257 35v1h-1v-1zM263 34h1v1h-1zM158 36h-1v1h1z
+      M284 36h1v1h-1zM415 35h1v1h-1zM416 36h1v1h-1zM143 36h2v1h-1v1h1l-1 2h-1zM145 37h1v1h-1z
+      M148 37v1h-1v-1zM180 36h2v1h-2zM225 37h1l1 2h-5v-1h3zM137 37h1v1h-1zM137 38v1h2v1h-8v-1h-2v-1z
+      M140 37h2v1h-2zM288 37h1v1h-1zM275 38h1v1h-1zM312 39h3v1h-3zM429 38h4v1h-4z
+      M117 39h11v1h2v1l-13 -1zM195 39h6v1h-6zM218 39h2v1h-2zM436 39h6v2h-8v-1h2zM107 40h5l-1 2h17v1h9v1h1v-1h4v1h2v1h1v-1h3l1 2h1l1 -2h9v1h5v1h1v-1h3v1h7v1h1v-1h3v1h4v1l3 -2v1h9v1h8v-1h1v1h5v1h7v-1h4v1h-3l2 3h-2v-1h-2v-1h-1v1h-7v-2h-1l-1 2h-5v1h-1v-1h-4v1h-1v-2h-4l1 2h-4v-1h-3v1h-9v-1h-1v1h-14v-1h2v-1h-2v1h-2v1h-4v-1h-5l-1 -2l-4 -1v1h-3v1l7 1v1h-7l-1 -2h-1l1 2h-28v-1h5v-2h2v-1l2 1v2h11l-1 -2h-3v1h-1v-2h-7v-1h-1v1h-3v-1h-9v-1h-5v-1h-3v-1h-13v-1h1v-1h2v-1h7v1h3v-1h7z
+      M317 40h1v1h-1zM448 40h4v1h-4zM156 41h2v1h-2zM165 41h2v1h-2zM322 41h1v1h-1z
+      M453 41h8l-1 2h1v-1h13v1h2v1h-2v1h-6v1h-1v-1h-3l-1 2h-3v-1h-11v1h-1v2h-1v-1h-1v1h-3v-1h-3v1h-1v-2h-2v1h1v1h-1v2h11v1h-53v-1h2v-1h-2v1h-2v-1h-4v2h-4v-1h-1v1h-3v-1h-1v-1h2l1 -2h4v1h2v-1h2v-1h9v-1h1v1h2v-1h3v1h1v-1h5v2h1v-3h1v4h1v-3h8v-1l2 1v-1h2v-1h1v1h1v-1l4 1v-1h5v-1h2v1h1v-1h4v1h1v-2h7zM143 42h1v1h-1zM145 42h5v1h-5zM459 43h-1v1h1zM464 43h-1v1h2v-1z
+      M69 43h4v2h1v1h-1v1l-4 -1v1h-2v1l4 -1l1 2h-7l1 -2h-1l-1 2h-1v-1h-2v1l-4 -1v-1l9 -1v-1h1v-1h2zM128 44h-1v2h1zM476 44h2v1h-2zM80 44h2v1h-2zM83 44h2v2h1v1h-3v1h-1z
+      M138 45h-1v1h1zM424 44h1v1h-1zM478 45h1v1h-1zM86 45h2v2h-1zM89 45h1v1h-1z
+      M209 45h7v1h-7zM311 45h1v1h12v1h5v1h2l2 3h1v-1h2v-1h2v-1h5v-1h2v2h9v1h-3v1h-2v-1l-7 1v-1h-2v-1h-1v1h-1v1h-2v1h-6l1 -2h-1v1h-2v-2h-1v-1h-1v1l-4 -1l-1 2h-1v-1h-3l-1 2h2v1h-23l1 -2h-1v1h-1v-1h-2v2h-17v-1h-1v1h-3v-1h-2v1h-18v-1h-1v1h-1v-3h1v1h1v-1h2v1h2v-1h6v-1h5v1h10v-1h1v1h2v-1h2v-1h2v1h3v-1h1v1h2v-1h1v1h3v-1h7v-1h1v1h4v-1h6zM73 47h2v1h-2zM100 46h1v1h-1zM100 47v1h-4v-1z
+      M155 47l-2 1v2h2v-1l4 -1v-1h-2v1zM236 46h2v1h-2zM309 47h-1v1h1zM432 47h-1v1h1zM48 47h1v2h-2v1h2v-1h1v2h1v-2h-1v-2h1v1h5v1h3v1h2v1h15v-2h2l-1 2h2v-2h2v2h2v-1h1v1h4v-2h2v2h1v-1h2v1h2v-1h4l1 2h-64v-1h9l1 -2h-1v1h-2v-1h-4v-1h9z
+      M96 48v1h-2v-1zM182 48h-1v1h1zM268 47h2v1h-2zM397 48h-1v1h1zM406 48h-1l-1 2h-6v1h6v-1l2 1z
+      M410 48h-1v2h-1v1h3v-1h-1zM417 48h-1v1h1zM421 48h-1v1h1zM428 48h-1l-1 2h-2v1h6v-2h-2zM434 48h-1l-2 3h4l1 -2h-2z
+      M464 47h1v1h-1zM465 48l4 1v2h-6v-1h2zM498 47h1v2h-2zM25 48h3v1h-3zM31 48h4v1h-4z
+      M36 48h1l1 2h-2zM61 49h1v1h-1zM64 49h1v1h-1zM105 48h3l-1 2h1v1h4v1h-9v-2h1zM139 49h-1v1h1z
+      M159 49h-1v1h2v-1zM245 48h3v3h-5zM282 49h-1v2h2v-2zM324 49v1h-1v-1zM335 48h1v1h-1z
+      M364 48h1v1h-1zM365 49h4v1h2l-1 2h-3v-1h-1v1h-14v-1h5l-1 -2h4v1h2v1h3zM373 48h1v1h4v2l-7 -1v-1h2zM448 49h1v1h-1zM455 48h2l2 3h-5v-1h1z
+      M471 48h1v2h1v1h-2v-1h-1zM56 50h-1v1h1zM58 50h-1v1h1zM109 49h2v1h-2zM170 50h-1v1h1z
+      M224 49h7v1h4v-1h2l1 2h2v-1h1l1 2h-21v-2h3zM280 50h-1v1h1zM413 50h-1v1h2v-1zM417 50h-1v1h3v-1zM473 49h2v2h-1z
+      M112 50h1v1h-1zM318 50h1v1h-1zM319 51h6v1h-6zM328 51v1h-1v-1zM393 51v1h-3v-1z
+      M450 51h1v1h-1z
+    "/>
+    <path opacity=".48" d="
+      M282 3h2v1h-2zM303 4h2v2h-1zM261 6h1v1h-1zM316 6h1v2h-1zM316 8v1h-2v-1z
+      M320 8h1v1h3v1l-2 1v-1h-2zM240 9h2v1h-2zM330 12h1v1h-1zM222 13h2v1h-2zM294 13h1v2h-1z
+      M219 14h2v1h-1v1h-3v-1h2zM246 14h1v1h-1zM330 14h1v1h-1zM228 15h2v1h-2zM228 16v1h-1v-1z
+      M243 15h1v1h-1zM243 16v1h-2v-1zM342 15h1v1h-1zM214 16h2v1h-2zM270 16h1v1h-1z
+      M315 16h1v1h-1zM344 16h1v1h-1zM212 17h1v1h-1zM246 17h1v1h-1zM311 17h2v2h-1z
+      M317 17h1v3h-2v-1h1zM224 18h1v1h-1zM339 18h1v1h-1zM204 20h1v1h-1zM261 20h1v2h-1z
+      M358 20h1v1h-1zM201 21h1v1h-1zM217 21h1v2h-1zM360 21h1v1h-1zM196 22h1v1h-1z
+      M215 22h1v2h-3v-1h2zM252 22h1v2h-1zM283 22h1v1h-1zM193 23h1v2h-5v-1h4zM201 23h2v1l-2 1z
+      M270 23h1v2h-2zM272 23h1v1h-1zM291 23h1v1h-1zM335 23h1v1h-1zM231 24h1v1h-1z
+      M276 24h1v1h-1zM339 24h1v1h-1zM369 24h3v4h-2zM226 25h1v2h-1zM299 25h2l-1 2l-5 1v-1h2v-1h2z
+      M179 27l2 1v1h-1v2h-1l-1 -2h-1v1h-3v-1l5 -1zM238 27h1l1 2h-4v-1h2zM186 28h3v1h-3zM269 28h1v2h-1zM300 28h1v1h-1z
+      M212 29h1v1h-1zM297 29h2v1h-2zM168 30h2v1h-2zM168 31v3h-1l-2 -3zM215 30h2v1h-2z
+      M215 31v1h-2v-1zM320 30h1v2h-1zM366 30h1v1h-1zM171 31h1v1h-1zM190 31h2v2h-2z
+      M213 32v1h-1v-1zM370 31h1v1h-1zM399 31h2v1l-2 1zM162 32h2v1h-1l-1 2h-2v1h-1v-1h-1v-2h4zM178 32h2v1h-2z
+      M333 32h1v1h-1zM215 33h1v1h-1zM306 33h1v1h-1zM356 33h1v1h-1zM389 34h1v1h-1z
+      M389 35v1h-1v-1zM412 34h1v1h-1zM204 35h1v1h-1zM304 35h1v1h-1zM386 35h1v1h-1z
+      M151 36h2l1 2h-3zM162 36h1v1h-1zM391 36h1v1h-1zM228 37h4v1h-4zM298 37h1v1h-1z
+      M130 38h2v1h-2zM306 38h2v1h-2zM437 39h4v1h-4zM104 41h2v2h-1zM108 41h1v1h-1z
+      M89 42h2v1h-2zM98 42h3l1 2h-3zM119 42h3v2h-1v-1h-2zM450 42h1v1h-1zM472 42h1v1h2v1h-5v-1h2z
+      M125 43h2v1h-2zM68 44h1l1 2h-4v-1h2zM145 44h3v1h-3zM115 45h1l1 2h-3zM163 45h1v2h-1v1h-2v-2h2z
+      M172 46h1l1 2h-2zM98 47h1v1h-1zM174 48h1v1h-1zM187 47h4v1h-4zM293 47h2v2h-5v-1h3z
+      M392 47h1v1h2v2h-1v-1h-4v-1h2zM40 48h5v1h-5zM130 48h1v1h-1zM132 48h3v1h-3zM135 49h1v2h-1z
+      M148 48h1v1h-1zM169 48h1v1h-1zM170 49h2l1 2h-3zM184 48h2v1h-2zM217 48h1v3h-2v-1h1z
+      M58 49h1v1h-1zM155 49h1v1h3v1h-4zM188 49h1v1h-1zM235 49h1l1 2h-2zM344 49h2v1h-2z
+      M416 49h1v1h-1zM419 49h1v1h-1zM160 50h1v1h-1zM161 51h1v1h-1zM175 50h1v1h-1z
+      M230 50h1v1h-1zM253 50h1v1h-1zM257 50h1v1h-1zM277 50h1v1h-1zM334 50h1v1h-1z
+      M349 50h1v1h-1zM358 50h1v1h-1zM82 51h1v1h-1zM92 51h2v1h-2zM122 51h4v1h-4z
+      M427 51h8v1h-8z
+    "/>
+  </g>
+</svg>

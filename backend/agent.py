@@ -7,7 +7,10 @@ from typing import Literal
 import httpx
 from pydantic import BaseModel, ConfigDict
 
-from analytics import CompareRequest, CoverageRequest, ScopedGroupCompareRequest
+if __package__:
+    from .analytics import CompareRequest, CoverageRequest, ScopedGroupCompareRequest
+else:
+    from analytics import CompareRequest, CoverageRequest, ScopedGroupCompareRequest
 
 
 NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions"

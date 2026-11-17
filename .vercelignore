@@ -1,0 +1,16 @@
+.venv/
+.git/
+.vercel/
+.agents/
+.codex/
+.aws/
+**/.env
+**/.env.*
+**/__pycache__/
+**/.pytest_cache/
+backend/tests/
+frontend/assets/*.webp
+backend/data/*
+!backend/data/demo_608.csv
+!backend/data/jeju_608.csv
+!backend/data/jeju_608.json

@@ -4,12 +4,16 @@ const byId = (id) => document.getElementById(id);
 const question = byId("question");
 const agentForm = byId("agent-form");
 const manualForm = byId("manual-form");
-const manualPanel = byId("manual-panel");
-const settings = byId("settings-button");
-const example = byId("example-trigger");
-const searchView = byId("search-view");
-const conversationView = byId("conversation");
 const conversation = byId("conversation-history");
+const requestState = byId("request-state");
+const suggestionButtons = [...document.querySelectorAll("[data-suggestion]")];
+const navLinks = [...document.querySelectorAll("a[data-view]")];
+const views = {
+  home: byId("search-view"),
+  data: byId("data-view"),
+  results: byId("conversation"),
+  favorites: byId("favorites-view"),
+};
 const district = byId("manual-district");
 const visitor = byId("manual-visitor");
 const start = byId("manual-start");
@@ -23,6 +27,9 @@ let busy = false;
 let activeContext;
 let availableMonths = [];
 let retryAction;
+const suggestions = new Map();
+const favoritesKey = "jeju-data-agent.favorite-questions";
+let favorites = readFavorites();
 const monthlyQuestion = "같은 조건으로 월별 추이를 보여줘.";
 
 function element(tag, className, text) {
@@ -48,26 +55,24 @@ function periodLabel(first, last) {
 
 function updateControls() {
   const ready = Boolean(catalog);
-  const canAsk = ready && catalog.ai_available;
-  question.disabled = ready && !canAsk;
   question.readOnly = busy;
-  submit.disabled = busy || !canAsk;
-  settings.disabled = busy || !ready;
-  example.disabled = busy || !catalog?.comparison_months.length;
+  submit.disabled = busy || !ready;
+  for (const button of suggestionButtons) {
+    button.disabled = busy || !suggestions.has(button.dataset.suggestion);
+  }
   byId("manual-fields").disabled = busy || !ready;
   byId("manual-submit").disabled = busy || !availableMonths.length;
   retry.disabled = busy;
   for (const control of conversation.querySelectorAll(".choice-button, [data-analysis-action]")) {
     control.disabled = busy;
   }
-  byId("submit-label").textContent = busy && agentForm.getAttribute("aria-busy") === "true" ? "비교 중" : "비교하기";
+  byId("submit-label").textContent = agentForm.getAttribute("aria-busy") === "true" ? "분석 중" : "질문하기";
 }
 
 function showState(kind, title, description, next) {
-  const panel = byId("request-state");
   retryAction = next;
-  panel.hidden = !kind;
-  panel.dataset.kind = kind ?? "";
+  requestState.hidden = !kind;
+  requestState.dataset.kind = kind ?? "";
   byId("request-title").textContent = title ?? "";
   byId("activity-status").textContent = description ?? "";
   retry.hidden = !next;
@@ -82,6 +87,11 @@ async function request(url, data) {
   const response = await fetch(url, init);
   const payload = await response.json().catch(() => null);
   if (response.ok && payload) return payload;
+  if (response.status >= 500) {
+    throw new Error(url === "/api/agent"
+      ? "잠시 후 다시 시도하거나 데이터 둘러보기에서 조건을 직접 선택해 주세요."
+      : "잠시 후 다시 시도해 주세요.");
+  }
   const message = typeof payload?.detail === "string" ? payload.detail : "";
   throw new Error(message);
 }
@@ -92,7 +102,7 @@ async function run(operation, { form, title, description, errorTitle, reveal = f
   form?.setAttribute("aria-busy", "true");
   showState("loading", title, description);
   updateControls();
-  if (reveal) byId("request-state").scrollIntoView({ block: "nearest" });
+  if (reveal) requestState.scrollIntoView({ block: "nearest" });
   try {
     await operation();
     showState();
@@ -100,7 +110,7 @@ async function run(operation, { form, title, description, errorTitle, reveal = f
     const message = error.message && error.message !== "Failed to fetch"
       ? error.message : "서버 연결을 확인한 뒤 다시 시도해 주세요.";
     showState("error", errorTitle, message, () => run(operation, { form, title, description, errorTitle, reveal }));
-    if (reveal) byId("request-state").scrollIntoView({ block: "nearest" });
+    requestState.scrollIntoView({ block: "nearest" });
   } finally {
     busy = false;
     form?.setAttribute("aria-busy", "false");
@@ -178,18 +188,105 @@ function readManual() {
   };
 }
 
+function locationView() {
+  const name = location.hash.slice(1) || "home";
+  if (Object.hasOwn(views, name)) return name;
+}
+
+function showView(name, { focus = true, updateLocation = true } = {}) {
+  for (const [view, section] of Object.entries(views)) section.hidden = view !== name;
+  const statusSlot = byId(`${name}-status`);
+  if (requestState.parentElement !== statusSlot) statusSlot.append(requestState);
+  for (const link of navLinks) {
+    if (!link.classList.contains("nav-link")) continue;
+    if (link.dataset.view === name) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  }
+  if (updateLocation && (name !== "home" || location.hash) && location.hash !== `#${name}`) {
+    history.pushState(null, "", `#${name}`);
+  }
+  if (focus) {
+    const turn = name === "results" ? conversation.lastElementChild : null;
+    const target = turn?.querySelector(".turn-result") ?? views[name].querySelector("h1");
+    target.focus({ preventScroll: true });
+    if (turn) turn.scrollIntoView({ block: "start" });
+    else window.scrollTo(0, 0);
+  }
+}
+
+function fillQuestion(prompt) {
+  if (busy) return;
+  showState();
+  question.value = prompt;
+  showView("home", { focus: false });
+  window.scrollTo(0, 0);
+  question.focus();
+}
+
 function reopenSearch() {
-  conversationView.hidden = true;
-  searchView.hidden = false;
-  if (catalog?.ai_available) question.focus();
-  else settings.focus();
+  showView("home", { focus: false });
+  window.scrollTo(0, 0);
+  question.focus();
 }
 
 function openManual() {
-  if (searchView.hidden) reopenSearch();
-  manualPanel.open = true;
-  settings.setAttribute("aria-expanded", "true");
-  district.focus();
+  showView("data");
+  if (!district.matches(":disabled")) district.focus();
+}
+
+function readFavorites() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(favoritesKey) ?? "[]");
+    return Array.isArray(saved) ? [...new Set(saved.filter((item) =>
+      typeof item === "string" && item.trim() && item.length <= question.maxLength))] : [];
+  } catch {
+    return [];
+  }
+}
+
+function renderFavorites() {
+  const list = byId("favorites-list");
+  list.replaceChildren();
+  list.hidden = !favorites.length;
+  byId("favorites-empty").hidden = favorites.length > 0;
+  for (const prompt of favorites) {
+    const item = element("li", "favorite-item");
+    const restore = element("button", "favorite-question", prompt);
+    const remove = element("button", "secondary-button favorite-remove", "삭제");
+    restore.type = remove.type = "button";
+    restore.addEventListener("click", () => fillQuestion(prompt));
+    remove.setAttribute("aria-label", `저장한 질문 삭제: ${prompt}`);
+    remove.addEventListener("click", () => {
+      const index = favorites.indexOf(prompt);
+      if (!changeFavorite(prompt)) return;
+      const next = list.children[Math.min(index, list.children.length - 1)]?.firstElementChild;
+      (next ?? byId("favorites-title")).focus();
+    });
+    item.append(restore, remove);
+    list.append(item);
+  }
+}
+
+function changeFavorite(prompt) {
+  const saved = favorites.includes(prompt);
+  const next = saved ? favorites.filter((value) => value !== prompt) : [prompt, ...favorites];
+  try {
+    localStorage.setItem(favoritesKey, JSON.stringify(next));
+  } catch {
+    showState("error", "즐겨찾기를 저장하지 못했어요", "브라우저에서 이 사이트의 저장 공간 사용을 허용해 주세요.");
+    requestState.scrollIntoView({ block: "nearest" });
+    return false;
+  }
+  favorites = next;
+  for (const button of conversation.querySelectorAll(".favorite-toggle")) {
+    if (button.dataset.favoriteQuestion === prompt) button.textContent = favoriteLabel(!saved);
+  }
+  renderFavorites();
+  return true;
+}
+
+function favoriteLabel(saved) {
+  return saved ? "즐겨찾기 해제" : "즐겨찾기 추가";
 }
 
 function addTurn(prompt, render, focus = true) {
@@ -201,8 +298,9 @@ function addTurn(prompt, render, focus = true) {
   turn.append(user, result);
   render(result);
   conversation.append(turn);
-  searchView.hidden = true;
-  conversationView.hidden = false;
+  byId("results-empty").hidden = true;
+  showState();
+  showView("results", { focus: false });
   if (focus) {
     result.focus({ preventScroll: true });
     turn.scrollIntoView({ block: "start" });
@@ -211,11 +309,18 @@ function addTurn(prompt, render, focus = true) {
 
 function addResult(prompt, detail, requestedMetric) {
   addTurn(prompt, (target) => {
-    window.JejuResults.render(target, detail, catalog, {
+    const panel = window.JejuResults.render(target, detail, catalog, {
       onMonthly: requestMonthly,
       onUsePeriod: (response) => useCoveragePeriod(response, requestedMetric),
       onReset: reopenSearch,
     });
+    if (detail.analysis === "inspect_coverage" || prompt.length > question.maxLength) return;
+    const actions = panel.querySelector(".result-actions");
+    const favorite = element("button", "secondary-button favorite-toggle", favoriteLabel(favorites.includes(prompt)));
+    favorite.type = "button";
+    favorite.dataset.favoriteQuestion = prompt;
+    favorite.addEventListener("click", () => changeFavorite(prompt));
+    actions.insertBefore(favorite, actions.querySelector(".copy-status"));
   });
 }
 
@@ -225,14 +330,14 @@ function manualQuestion(params) {
   return `${periodLabel(params.start_month, params.end_month)} ${area} 주말 ${indicator} 비교`;
 }
 
-function startManual(params, prompt = manualQuestion(params), analysis = "compare_groups", reveal = false) {
+function startManual(params, prompt = manualQuestion(params), analysis = "compare_groups", { reveal = false, form = manualForm } = {}) {
   return run(async () => {
     const result = await request("/api/compare-groups", params);
     activeContext = { ...params, analysis };
     setManual(params);
     addResult(prompt, { analysis, params, result });
   }, {
-    form: manualForm, title: analysis === "monthly_trend" ? "월별 수치를 확인하고 있어요" : "비교 수치를 집계하고 있어요",
+    form, title: analysis === "monthly_trend" ? "월별 수치를 확인하고 있어요" : "비교 수치를 집계하고 있어요",
     description: "선택한 지역과 기간의 토·일 카드 이용 자료를 불러오는 중입니다.",
     errorTitle: "비교 결과를 불러오지 못했어요",
     reveal,
@@ -247,7 +352,7 @@ function requestMonthly({ params, result }) {
     end_month: params.end_month,
     metric: params.metric,
   };
-  void startManual(selection, monthlyQuestion, "monthly_trend", true);
+  void startManual(selection, monthlyQuestion, "monthly_trend", { reveal: true });
 }
 
 function useCoveragePeriod({ result }, requestedMetric) {
@@ -259,7 +364,7 @@ function useCoveragePeriod({ result }, requestedMetric) {
     end_month: result.observed_end_month,
   });
   const params = readManual();
-  if (params) void startManual(params, undefined, "compare_groups", true);
+  if (params) void startManual(params, undefined, "compare_groups", { reveal: true });
 }
 
 function choiceControls(kind, message, body, host) {
@@ -409,9 +514,27 @@ function guardUnsupported(prompt) {
   return true;
 }
 
-function exampleQuestion(month) {
+function configureSuggestions() {
+  suggestions.clear();
+  const months = catalog.comparison_months;
+  const last = months.at(-1);
+  if (!last) return;
   const areas = catalog.districts.length === 2 ? "두 구도심" : "조회 가능한 지역";
-  return `${monthLabel(month)} ${areas}의 주말 카드 이용 건수를 비교해 주세요.`;
+  const metricIds = new Set(catalog.metrics.map(({ id }) => id));
+  const add = (id, metric, prompt, first = last, analysis = "compare_groups") => {
+    if (!metricIds.has(metric)) return;
+    suggestions.set(id, {
+      analysis,
+      prompt,
+      params: { district: null, visitor_type: null, start_month: first, end_month: last, metric },
+    });
+  };
+  add("transactions", "transactions", `${monthLabel(last)} ${areas}의 주말 카드 이용 건수를 비교해 주세요.`);
+  add("amount", "amount", `${monthLabel(last)} ${areas}의 주말 카드 이용 금액을 비교해 주세요.`);
+  const first = months.slice(-3).find((month) => monthIndex(last) - monthIndex(month) < 120);
+  if (first && first !== last) {
+    add("trend", "transactions", `${periodLabel(first, last)} ${areas}의 월별 주말 카드 이용 건수 추이를 보여주세요.`, first, "monthly_trend");
+  }
 }
 
 function loadCatalog() {
@@ -423,25 +546,21 @@ function loadCatalog() {
     catalog = { ...result, districts };
     const months = [...new Set(districts.flatMap(({ months }) => months))].sort();
     const period = periodLabel(months[0], months.at(-1));
-    byId("data-scope").textContent = `${catalog.mode === "demo" ? "합성 데모 · " : ""}${period} · 업종 구분 없음`;
+    byId("data-name").textContent = catalog.data_name;
+    const regions = districts.map(({ name }) => name).join(" · ");
+    byId("data-coverage").textContent = `${catalog.mode === "demo" ? "합성 데모 · " : ""}${regions} · ${period} · 업종 구분 없음`;
     byId("data-scope").hidden = false;
     byId("availability-note").textContent = catalog.ai_available
-      ? "" : "자유 질문을 사용할 수 없습니다. 조건을 직접 선택하면 비교할 수 있어요.";
+      ? "" : "지금은 예시 질문이나 데이터 둘러보기에서 비교할 수 있어요.";
     byId("availability-note").hidden = catalog.ai_available;
     setManual();
-    const lastMonth = catalog.comparison_months.at(-1);
-    if (lastMonth) question.placeholder = exampleQuestion(lastMonth);
+    configureSuggestions();
   }, {
     title: "조회할 수 있는 자료를 확인하고 있어요", description: "지역과 조회 기간을 불러오는 중입니다.",
     errorTitle: "조회 조건을 불러오지 못했어요",
   });
 }
 
-settings.addEventListener("click", () => {
-  if (manualPanel.open) manualPanel.open = false;
-  else openManual();
-});
-manualPanel.addEventListener("toggle", () => settings.setAttribute("aria-expanded", String(manualPanel.open)));
 manualForm.addEventListener("change", () => {
   if (retryAction) showState();
 });
@@ -457,15 +576,24 @@ manualForm.addEventListener("submit", (event) => {
   if (params && !busy) void startManual(params);
 });
 question.addEventListener("input", () => {
-  if (retryAction) showState();
+  if (!busy) showState();
 });
 agentForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const prompt = question.value.trim();
-  if (busy || !catalog?.ai_available) return;
+  if (busy || !catalog) return;
   if (!prompt) {
     showState("info", "질문을 입력해 주세요", "기간이나 지역을 포함하면 더 정확하게 비교할 수 있어요.");
     question.focus();
+    return;
+  }
+  const selected = [...suggestions.values()].find((suggestion) => suggestion.prompt === prompt);
+  if (selected) {
+    void startManual(selected.params, selected.prompt, selected.analysis, { form: agentForm });
+    return;
+  }
+  if (!catalog.ai_available) {
+    showState("info", "자유 질문을 사용할 수 없어요", "아래 예시 질문을 선택하거나 데이터 둘러보기에서 조건을 직접 선택해 주세요.");
     return;
   }
   if (guardUnsupported(prompt)) return;
@@ -480,16 +608,24 @@ question.addEventListener("keydown", (event) => {
   agentForm.requestSubmit();
 });
 retry.addEventListener("click", () => retryAction?.());
-example.addEventListener("click", () => {
-  const month = catalog?.comparison_months.at(-1);
-  if (!month || busy) return;
-  const params = { district: null, visitor_type: null, start_month: month, end_month: month, metric: "transactions" };
-  void startManual(params, exampleQuestion(month));
-});
-document.querySelector(".brand").addEventListener("click", (event) => {
-  if (!searchView.hidden) return;
-  event.preventDefault();
-  reopenSearch();
+for (const button of suggestionButtons) {
+  button.addEventListener("click", () => {
+    const selected = suggestions.get(button.dataset.suggestion);
+    if (selected) fillQuestion(selected.prompt);
+  });
+}
+for (const link of navLinks) {
+  link.addEventListener("click", (event) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    showView(link.dataset.view);
+  });
+}
+window.addEventListener("hashchange", () => {
+  const view = locationView();
+  if (view) showView(view, { updateLocation: false });
 });
 
+renderFavorites();
+showView(locationView() ?? "home", { focus: false, updateLocation: false });
 void loadCatalog();

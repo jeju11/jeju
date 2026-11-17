@@ -7,8 +7,12 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
-from agent import CLARIFICATIONS, AgentContext, AgentError, Clarification, NvidiaAgent
-from analytics import AnalysisError, Analytics, CompareRequest, CoverageRequest, ScopedGroupCompareRequest
+if __package__:
+    from .agent import CLARIFICATIONS, AgentContext, AgentError, Clarification, NvidiaAgent
+    from .analytics import AnalysisError, Analytics, CompareRequest, CoverageRequest, ScopedGroupCompareRequest
+else:
+    from agent import CLARIFICATIONS, AgentContext, AgentError, Clarification, NvidiaAgent
+    from analytics import AnalysisError, Analytics, CompareRequest, CoverageRequest, ScopedGroupCompareRequest
 
 
 BACKEND = Path(__file__).resolve().parent
