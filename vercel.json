@@ -1,9 +1,8 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "fastapi",
-  "functions": {
-    "app.py": {
-      "includeFiles": "{frontend/index.html,frontend/assets/{app.js,results.js,styles.css,hallasan.svg,favicon.svg,favicon-32.png,jeju-share.png},backend/data/{demo_608.csv,jeju_608.csv,jeju_608.json}}"
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 9 * * 1"
     }
-  }
+  ]
 }
