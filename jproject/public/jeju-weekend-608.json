@@ -1,0 +1,850 @@
+{
+  "datasetId": 608,
+  "source": "https://jejudatahub.net/data/view/data/608",
+  "coverage": {
+    "startMonth": "201609",
+    "endMonth": "201711"
+  },
+  "data": [
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "일",
+      "useCount": 9526
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "토",
+      "useCount": 10351
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "일",
+      "useCount": 13050
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "토",
+      "useCount": 13448
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "일",
+      "useCount": 9055
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "토",
+      "useCount": 10076
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "일",
+      "useCount": 9070
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "토",
+      "useCount": 12469
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "일",
+      "useCount": 12428
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "토",
+      "useCount": 10141
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "일",
+      "useCount": 10054
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "토",
+      "useCount": 10377
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "일",
+      "useCount": 9887
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "토",
+      "useCount": 10781
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "일",
+      "useCount": 15256
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "토",
+      "useCount": 15282
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "일",
+      "useCount": 11659
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "토",
+      "useCount": 12627
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "일",
+      "useCount": 12899
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "토",
+      "useCount": 12904
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "일",
+      "useCount": 16662
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "토",
+      "useCount": 16977
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "일",
+      "useCount": 13756
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "토",
+      "useCount": 13893
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "일",
+      "useCount": 12689
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "토",
+      "useCount": 16324
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "일",
+      "useCount": 14183
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "토",
+      "useCount": 11558
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "일",
+      "useCount": 10509
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "토",
+      "useCount": 11507
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "일",
+      "useCount": 375
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "토",
+      "useCount": 406
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "일",
+      "useCount": 570
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "토",
+      "useCount": 461
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "일",
+      "useCount": 166
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "토",
+      "useCount": 214
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "일",
+      "useCount": 197
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "토",
+      "useCount": 282
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "일",
+      "useCount": 460
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "토",
+      "useCount": 261
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "일",
+      "useCount": 323
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "토",
+      "useCount": 294
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "일",
+      "useCount": 78
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "토",
+      "useCount": 88
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "일",
+      "useCount": 62
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "토",
+      "useCount": 69
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "일",
+      "useCount": 41
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "토",
+      "useCount": 38
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "일",
+      "useCount": 49
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "토",
+      "useCount": 57
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "일",
+      "useCount": 97
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "토",
+      "useCount": 115
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "일",
+      "useCount": 76
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "토",
+      "useCount": 74
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "일",
+      "useCount": 60
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "토",
+      "useCount": 71
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "일",
+      "useCount": 91
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "토",
+      "useCount": 59
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "일",
+      "useCount": 47
+    },
+    {
+      "districtType": "서귀포시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "토",
+      "useCount": 40
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "일",
+      "useCount": 10287
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "토",
+      "useCount": 10689
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "일",
+      "useCount": 13667
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "토",
+      "useCount": 13313
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "일",
+      "useCount": 10712
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "토",
+      "useCount": 10749
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "일",
+      "useCount": 9706
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "토",
+      "useCount": 12755
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "일",
+      "useCount": 13101
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "토",
+      "useCount": 9627
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "일",
+      "useCount": 10551
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "토",
+      "useCount": 10963
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "일",
+      "useCount": 11538
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "토",
+      "useCount": 11742
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "일",
+      "useCount": 16694
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "토",
+      "useCount": 16759
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "일",
+      "useCount": 13672
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "토",
+      "useCount": 14287
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "일",
+      "useCount": 14695
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "토",
+      "useCount": 13875
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "일",
+      "useCount": 18536
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "토",
+      "useCount": 18218
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "일",
+      "useCount": 16340
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "토",
+      "useCount": 16917
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "일",
+      "useCount": 15654
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "토",
+      "useCount": 19744
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "일",
+      "useCount": 16948
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "토",
+      "useCount": 13304
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "일",
+      "useCount": 13214
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "내국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "토",
+      "useCount": 13502
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "일",
+      "useCount": 2406
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201609",
+      "dtWeek": "토",
+      "useCount": 2452
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "일",
+      "useCount": 2940
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201610",
+      "dtWeek": "토",
+      "useCount": 2726
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "일",
+      "useCount": 1711
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201611",
+      "dtWeek": "토",
+      "useCount": 1865
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "일",
+      "useCount": 1784
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201612",
+      "dtWeek": "토",
+      "useCount": 2070
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "일",
+      "useCount": 2476
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201701",
+      "dtWeek": "토",
+      "useCount": 1480
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "일",
+      "useCount": 1913
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201702",
+      "dtWeek": "토",
+      "useCount": 1708
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "일",
+      "useCount": 947
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201703",
+      "dtWeek": "토",
+      "useCount": 809
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "일",
+      "useCount": 388
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201704",
+      "dtWeek": "토",
+      "useCount": 398
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "일",
+      "useCount": 338
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201705",
+      "dtWeek": "토",
+      "useCount": 347
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "일",
+      "useCount": 292
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201706",
+      "dtWeek": "토",
+      "useCount": 265
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "일",
+      "useCount": 574
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201707",
+      "dtWeek": "토",
+      "useCount": 499
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "일",
+      "useCount": 364
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201708",
+      "dtWeek": "토",
+      "useCount": 357
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "일",
+      "useCount": 454
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201709",
+      "dtWeek": "토",
+      "useCount": 474
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "일",
+      "useCount": 386
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201710",
+      "dtWeek": "토",
+      "useCount": 369
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "일",
+      "useCount": 352
+    },
+    {
+      "districtType": "제주시 구도심",
+      "userType": "중국인관광객",
+      "dtYearMonth": "201711",
+      "dtWeek": "토",
+      "useCount": 279
+    }
+  ]
+}
