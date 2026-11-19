@@ -1,50 +1,56 @@
-# 프론트엔드 · Jeju Data Agent
+# Jeju Data Agent 사용자 화면
 
-제주데이터허브 608번 자료를 지역·관광객 구분·기간별로 나눠 토요일과 일요일의 카드 이용을 비교하는 화면입니다. HTML, CSS, 브라우저 자바스크립트로 구성했습니다.
+도민과 상권 관계자가 제주 구도심의 주말 카드 이용을 질문하고, 비교 수치와 근거를 확인하는 화면입니다. HTML·CSS·브라우저 JavaScript로 구성했습니다.
 
-## 실행
+**[운영 시연](https://jeju-data-agent.vercel.app/) · [프로젝트 설치 안내](../README.md) · [API와 데이터 명세](../backend/README.md)**
 
-1. [프로젝트 README](../README.md)의 방법으로 백엔드를 실행합니다.
-2. 브라우저에서 `http://127.0.0.1:8000/`을 엽니다.
+## 실행과 사용 순서
 
-백엔드가 `/`에서 화면을, `/assets/`에서 CSS와 자바스크립트를 제공합니다. 같은 주소의 `/api/` 경로를 호출하므로 브라우저에서 HTML 파일을 직접 여는 대신 백엔드 주소로 접속합니다.
+[루트 README](../README.md)의 설치 절차로 백엔드를 실행한 후 `http://127.0.0.1:8000/`에 접속합니다. 같은 서버가 화면과 `/api/`를 제공합니다.
 
-## 화면 사용법
+1. **홈**에서 질문을 적고 **질문하기**를 누릅니다. 예시는 조회 가능한 기간으로 문장을 채워 주며, 사용자가 확인·수정한 후 제출합니다.
+2. **데이터 둘러보기**에서는 지역·관광객 유형·시작 월·종료 월·지표를 직접 선택합니다.
+3. **분석 결과**에서 결론, 두 지역의 수치, 비교 차트, 조건과 출처를 읽습니다. 한 달 비교는 막대, 여러 달 비교는 월별 선 차트로 확인합니다.
+4. **다시 비교하기**에서 직전 조건을 이어 질문할 수 있습니다. **회의용 요약 복사**로 수치·기간·조건·출처를 복사합니다.
+5. **즐겨찾기 추가**로 질문을 이 브라우저에 저장하고, 즐겨찾기에서 다시 열거나 삭제합니다.
 
-1. 홈에서 질문을 입력하고 **질문하기**를 누릅니다. `Enter`로 보내고 `Shift+Enter`로 줄을 바꿀 수 있습니다. 예시 버튼은 두 지역의 공통 관측 월을 기준으로 만든 질문을 입력란에 채웁니다. 문장을 확인하거나 수정한 뒤 제출합니다.
-2. 자유 질문은 NVIDIA 키가 필요합니다. **데이터 둘러보기**의 조건 선택과 수정하지 않은 예시 질문은 키 없이도 조회할 수 있습니다. **분석 결과**에서 직전 대화를 확인하고 **다시 비교하기**를 눌러 이어서 질문할 수 있습니다.
-3. 결과의 핵심 결론, 숫자 카드, 차트, 분석 조건과 출처를 차례로 확인합니다. 지역을 비교할 때는 공통 관측 월과 관광객 유형의 토·일 수치를 합산합니다. 한 달 비교에는 막대 차트, 여러 달의 월별 수치가 있으면 선 차트를 표시합니다. 정확한 월별 값은 표에서 확인할 수 있습니다.
-4. 질문에 지역이나 기간이 빠져 확인이 필요하면 선택지가 표시됩니다. 자료가 없는 기간은 실제 조회 가능 범위와 출처를 안내합니다. 요청 오류가 나면 입력한 질문과 조건을 유지한 채 **다시 시도**할 수 있습니다.
-5. **회의용 요약 복사**는 대상·기간·수치·출처를 복사합니다. 608번 자료는 업종을 구분하지 않으며, 확인되지 않은 금액 단위는 **원자료 단위**로 표시합니다. 합성 데이터로 실행할 때는 데모임을 표시합니다.
-6. **즐겨찾기 추가**는 분석에 사용한 질문을 이 브라우저에 저장합니다. **즐겨찾기**에서 저장한 질문을 열거나 삭제할 수 있습니다.
+자유 질문은 서버의 NVIDIA 키 설정이 필요합니다. 수정하지 않은 예시와 직접 선택은 키 없이 집계합니다. 실제 자료 연결 여부는 `/api/options`의 `mode`로 확인할 수 있습니다.
 
-## 파일
+## 대표 시연
+
+실제 608번 수집본으로 `2017년 11월 두 구도심 모두 토요일과 일요일 카드 이용 건수를 비교해줘.`를 제출합니다. 제주시 구도심 **27,347건**, 서귀포시 구도심 **22,103건**, 차이 **5,244건**이 표시됩니다. 관광객 유형과 토·일 합산 기준을 출처 옆에서 확인할 수 있습니다.
+
+월별 예시 질문을 선택하면 실제 관측 월을 사용한 추이를 보여줍니다. 원자료 단위가 확인되지 않은 이용 금액은 **원자료 단위**로 표시하고, 합성 데이터로 실행하면 데모 표시를 제공합니다.
+
+## 입력과 상태 안내
+
+- `Enter`로 제출하고 `Shift+Enter`로 줄을 바꿉니다. 한국어 입력기 조합 중 Enter와 중복 제출을 처리합니다.
+- 분석 중에는 진행 상태가 표시됩니다. 필수 조건이 빠지면 보충 선택지를 제공합니다.
+- 요청 기간에 자료가 없으면 조회 가능한 범위를 안내합니다. 요청 실패 시 질문과 조건을 유지한 채 다시 시도할 수 있습니다.
+- 모바일에서는 질문, 결과 요약, 차트, 출처 순서로 읽습니다. 키보드 포커스와 본문 건너뛰기 링크를 제공합니다.
+
+## 파일과 API 연결
 
 | 파일 | 역할 |
-|---|---|
-| `index.html` | 질문, 예시, 직접 선택과 분석 결과 영역 |
-| `assets/styles.css` | 반응형 화면, 입력·버튼과 상태 표시, 수치·차트 스타일 |
-| `assets/app.js` | 화면 이동, API 요청, 대화 조건, 보충 질문, 재시도 및 질문 저장 |
-| `assets/results.js` | API 수치를 연결한 결과 카드·차트·표·출처와 요약 복사 |
-| `assets/hallasan.svg` | 홈 하단의 한라산 일러스트 |
+| --- | --- |
+| `index.html` | 홈·데이터 탐색·결과·즐겨찾기와 공유 메타데이터 |
+| `assets/styles.css` | 반응형 배치, 입력·버튼, 차트, 상태 표시 |
+| `assets/app.js` | 화면 이동, API 요청, 대화 조건, 재시도, 질문 저장 |
+| `assets/results.js` | 응답 수치의 카드·차트·표·출처와 요약 복사 |
+| `assets/hallasan.svg` | 홈 하단 한라산 일러스트 |
+| `assets/favicon.svg`, `assets/favicon-32.png` | 사이트 파비콘 |
+| `assets/jeju-share.png` | 공유 미리보기 이미지 |
 
-<details>
-<summary>이전 디자인의 제주 이미지 생성 프롬프트</summary>
+| API | 화면에서 사용하는 내용 |
+| --- | --- |
+| `GET /api/options` | 지역·유형별 관측월, 공통 비교월, 지표, AI 설정 여부 |
+| `POST /api/compare-groups` | 직접 비교·예시 질문의 합계와 월별 추이 |
+| `POST /api/agent` | 자유 질문과 직전 조건에 따른 분석·기간 안내·보충 질문 |
 
-이전 디자인에서 사용한 이미지는 Codex 내장 이미지 생성 도구로 만든 뒤 WebP로 저장했습니다.
+백엔드는 단일 지역의 요일별 비교를 위한 `POST /api/compare`도 제공합니다. [API 명세](../backend/README.md#api)
 
-- `assets/jeju-coast-dialogue.webp` — Use case: photorealistic-natural. Create a standalone, unmasked panoramic editorial PHOTOGRAPH asset that recreates only the coastal scene inside the supplied webpage screenshot. The screenshot is a scene/composition reference ONLY. The output must be an edge-to-edge natural photograph, with no web interface, no fruit, no text, no margins and no fade. Very wide and shallow panorama 3:1 if possible, because it will be a white webpage hero with its edges faded in CSS. Place an authentic single Jeju dol hareubang of gray-black porous basalt at approximately 77% of the image width, facing camera slightly turned, the round stone hat and face and hands clearly recognizable at small scale, with a coast footpath on its right. Keep the figure completely within the frame from top of hat to hands; put some sky above it. The left two-thirds is a peaceful Jeju shoreline as in the reference: clear deep blue sea and white surf, black lava rocks, green low volcanic coastal headland in middle distance, a clean light-blue sky; quiet neighborhood buildings only far back. The horizontal coast is prominent with a true straight horizon. Natural midday daylight, finely textured, calm documentary South Korean travel photograph, colors true to life with subtle contrast. Keep useful space around important details to permit CSS fading on top, bottom and edges. No typography, no logo, no fake bokeh, no vignette, no illustration, no collage, no graphic border, no film retouch and no white compositing in the output.
-- `assets/hallabong.webp` — Use case: photorealistic-natural. Asset type: square regional selector photo for a Korean community website. A close up editorial photograph of one ripe Jeju Hallabong citrus with its unmistakable prominent raised knob at stem, and one smaller fruit beside it. A single attached muted leaf, fruit resting on cream-colored natural paper in directional soft daylight, simple ample margins, subject centered and fills about three quarters. Fine pores on pebbled orange skin, authentic Hallabong shape, muted natural warm palette, documentary food photography. Recognizable at small size, no text, no logos, no graphics, no border, no 3D render, no unnaturally glossy fruit.
+## 에셋과 제작 도구
 
-</details>
+Codex와 Vercel v0를 화면 코드와 디자인 초안·수정·검증에 활용했습니다. 홈의 한라산 SVG는 참가자가 제공한 화면 레퍼런스의 산 일러스트를 벡터화했습니다. 파비콘은 산 형태의 사이트 로고를, 공유 이미지는 사이트 타이포그래피와 한라산 에셋을 사용해 제작했습니다.
 
-## 백엔드 연동
-
-| 경로 | 용도 |
-|---|---|
-| `GET /api/options` | 데이터 모드, 지역·관광객 구분별 비교 가능 월과 공통 비교월, 지표, NVIDIA 키 설정 여부 |
-| `POST /api/compare` | 선택한 지역·관광객 구분(`visitor_type`)·기간·지표의 요일별 비교 결과 조회 |
-| `POST /api/compare-groups` | 선택한 지역·관광객 구분의 공통 기간으로 그룹별 요일 결과와 월별 추이 조회 |
-| `POST /api/agent` | 질문과 직전 분석 조건을 보내 분석 결과, 관측 범위 또는 확인 질문 받기 |
-
-숫자는 백엔드 집계 결과로 표시합니다. NVIDIA API 키와 데이터 접근 설정은 [백엔드 README](../backend/README.md)를 참고합니다.
+이전 디자인의 `hallabong.webp`, `jeju-coast-dialogue.webp`는 Codex 이미지 생성 도구로 만든 에셋입니다. 현재 홈은 `hallasan.svg`를 사용합니다.
